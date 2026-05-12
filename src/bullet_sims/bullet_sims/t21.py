@@ -91,16 +91,26 @@ tau = q_actuated_home*0
 
 #####TODO: implement joint space PD Controller
 def PD_controller(q,v,q_d):
-    n=len(v)
-    Kp=np.eye(n)
-    Kd=np.eye(n)
-    e=pin.difference(model,q,q_d)
-    print("length of q:")
-    print(len(q))
-    print("length of v:")
-    print(len(v))
+    #e=pin.difference(model,q,q_d)
 
-    tau=Kp*(q_d-q)-Kd*v
+    #e_j=e[6:]
+    q_j=q[7:]
+    q_d_j=np.zeros_like(q_j)
+
+    v_j=v[6:]
+
+
+    n=len(v_j)
+    K_p=np.ones(n) * 1.0
+    K_d=np.ones(n) * 0.8
+
+    K_p[0:12]*=3.0
+    K_d[0:12]*=3.0
+
+   
+
+    tau=K_p @(q_d_j-q_j) - K_d @ v_j
+    #tau=np.clip(tau,-200.0,200.0)
     return tau
 
 
@@ -114,9 +124,9 @@ while not done:
     simulator.debug()
     robot.update()
     
-    q=pin.neutral(model)
-    v=np.zeros(model.nv)
-    q_d=0
+    q=robot.q()
+    v=robot.v()
+    q_d=q_home.copy()
 
     tau=PD_controller(q,v,q_d)
     
