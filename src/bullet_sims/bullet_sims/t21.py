@@ -50,6 +50,7 @@ modelWrap = pin.RobotWrapper.BuildFromURDF(urdf,                        # Model 
 # Get model from wrapper
 model = modelWrap.model
 
+
 # setup the simulator
 simulator = PybulletWrapper(sim_rate=1000)
 
@@ -66,6 +67,18 @@ robot = Robot(simulator,            # The Pybullet wrapper
 #Needed for compatibility
 simulator.addLinkDebugFrame(-1,-1)
 
+#########TODO build pinocchio data structure of the model
+data = robot._model.createData()
+M= pin.crba(model,data,q_home)
+print("-------------   complete intertia matrix: -------------")
+print(M)
+print("-------------   non linear effects: -------------")
+
+v=np.zeros(model.nv) #joint velocity
+nle=pin.nonLinearEffects(model,data,q_home,v)
+print(nle)
+#########
+
 # Setup pybullet camera
 pb.resetDebugVisualizerCamera(
     cameraDistance=1.2,
@@ -76,12 +89,36 @@ pb.resetDebugVisualizerCamera(
 # Joint command vector
 tau = q_actuated_home*0
 
+#####TODO: implement joint space PD Controller
+def PD_controller(q,v,q_d):
+    n=len(v)
+    Kp=np.eye(n)
+    Kd=np.eye(n)
+    e=pin.difference(model,q,q_d)
+    print("length of q:")
+    print(len(q))
+    print("length of v:")
+    print(len(v))
+
+    tau=Kp*(q_d-q)-Kd*v
+    return tau
+
+
+
+#####
+
 done = False
 while not done:
     # update the simulator and the robot
     simulator.step()
     simulator.debug()
     robot.update()
+    
+    q=pin.neutral(model)
+    v=np.zeros(model.nv)
+    q_d=0
+
+    tau=PD_controller(q,v,q_d)
     
     # command to the robot
     robot.setActuatedJointTorques(tau)

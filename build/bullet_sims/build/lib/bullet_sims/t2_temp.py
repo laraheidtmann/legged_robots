@@ -50,6 +50,7 @@ modelWrap = pin.RobotWrapper.BuildFromURDF(urdf,                        # Model 
 # Get model from wrapper
 model = modelWrap.model
 
+
 # setup the simulator
 simulator = PybulletWrapper(sim_rate=1000)
 
@@ -65,6 +66,17 @@ robot = Robot(simulator,            # The Pybullet wrapper
 
 #Needed for compatibility
 simulator.addLinkDebugFrame(-1,-1)
+
+#TODO build pinocchio data structure of the model
+data = robot._model.createData()
+M= pin.crba(model,data,q_home)
+print("-------------   complete intertia matrix: -------------")
+print(M)
+print("-------------   non linear effects: -------------")
+
+v=np.zeros(model.nv) #joint velocity
+nle=pin.nonLinearEffects(model,data,q_home,v)
+print(nle)
 
 # Setup pybullet camera
 pb.resetDebugVisualizerCamera(
