@@ -1,0 +1,29 @@
+running egg_info
+creating ../../build/bullet_sims/bullet_sims.egg-info
+writing ../../build/bullet_sims/bullet_sims.egg-info/PKG-INFO
+writing dependency_links to ../../build/bullet_sims/bullet_sims.egg-info/dependency_links.txt
+writing entry points to ../../build/bullet_sims/bullet_sims.egg-info/entry_points.txt
+writing requirements to ../../build/bullet_sims/bullet_sims.egg-info/requires.txt
+writing top-level names to ../../build/bullet_sims/bullet_sims.egg-info/top_level.txt
+writing manifest file '../../build/bullet_sims/bullet_sims.egg-info/SOURCES.txt'
+reading manifest file '../../build/bullet_sims/bullet_sims.egg-info/SOURCES.txt'
+writing manifest file '../../build/bullet_sims/bullet_sims.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build
+creating /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib
+creating /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims
+copying bullet_sims/t2_temp.py -> /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims
+copying bullet_sims/__init__.py -> /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims
+running install
+running install_lib
+creating /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims
+copying /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims/t2_temp.py -> /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims
+copying /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims/__init__.py -> /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims
+byte-compiling /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims/t2_temp.py to t2_temp.cpython-312.pyc
+error: can't copy 'resource/bullet_sims': doesn't exist or not a regular file
+byte-compiling /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims/__init__.py to __init__.cpython-312.pyc
+running install_data
+creating /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/ament_index
+creating /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/ament_index/resource_index
+creating /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/ament_index/resource_index/packages

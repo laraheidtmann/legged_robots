@@ -1,0 +1,19 @@
+[0.781s] Invoking command in '/home/ubuntu/Documents/legged_robots_ws/src/my_other_python_libs': PS1=(.venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_other_python_libs build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/install.log --single-version-externally-managed install_data
+[0.918s] running egg_info
+[0.927s] writing ../../build/my_other_python_libs/my_other_python_libs.egg-info/PKG-INFO
+[0.927s] writing dependency_links to ../../build/my_other_python_libs/my_other_python_libs.egg-info/dependency_links.txt
+[0.927s] writing requirements to ../../build/my_other_python_libs/my_other_python_libs.egg-info/requires.txt
+[0.927s] writing top-level names to ../../build/my_other_python_libs/my_other_python_libs.egg-info/top_level.txt
+[0.941s] reading manifest file '../../build/my_other_python_libs/my_other_python_libs.egg-info/SOURCES.txt'
+[0.941s] writing manifest file '../../build/my_other_python_libs/my_other_python_libs.egg-info/SOURCES.txt'
+[0.941s] running build
+[0.941s] running build_py
+[0.942s] running install
+[0.946s] running install_lib
+[0.958s] running install_data
+[0.958s] running install_egg_info
+[0.966s] removing '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs-0.0.0-py3.12.egg-info' (and everything under it)
+[0.966s] Copying ../../build/my_other_python_libs/my_other_python_libs.egg-info to /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs-0.0.0-py3.12.egg-info
+[0.966s] running install_scripts
+[1.034s] writing list of installed files to '/home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/install.log'
+[1.061s] Invoked command in '/home/ubuntu/Documents/legged_robots_ws/src/my_other_python_libs' returned '0': PS1=(.venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_other_python_libs build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/install.log --single-version-externally-managed install_data

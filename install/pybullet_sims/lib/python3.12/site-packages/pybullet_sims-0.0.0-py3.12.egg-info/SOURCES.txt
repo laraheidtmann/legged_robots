@@ -1,0 +1,17 @@
+package.xml
+setup.cfg
+setup.py
+../../build/pybullet_sims/pybullet_sims.egg-info/PKG-INFO
+../../build/pybullet_sims/pybullet_sims.egg-info/SOURCES.txt
+../../build/pybullet_sims/pybullet_sims.egg-info/dependency_links.txt
+../../build/pybullet_sims/pybullet_sims.egg-info/entry_points.txt
+../../build/pybullet_sims/pybullet_sims.egg-info/requires.txt
+../../build/pybullet_sims/pybullet_sims.egg-info/top_level.txt
+../../build/pybullet_sims/pybullet_sims.egg-info/zip-safe
+pybullet_sims/__init__.py
+pybullet_sims/t2_temp.py
+resource/pybullet_sims
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
+test/test_xmllint.py

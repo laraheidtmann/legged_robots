@@ -1,0 +1,31 @@
+[0.558s] Invoking command in '/home/ubuntu/Documents/legged_robots_ws/src/bullet_sims': AMENT_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/reemc_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/reemc_description:${CMAKE_PREFIX_PATH} PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bullet_sims build --build-base /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build install --record /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/install.log --single-version-externally-managed install_data
+[0.693s] running egg_info
+[0.693s] creating ../../build/bullet_sims/bullet_sims.egg-info
+[0.700s] writing ../../build/bullet_sims/bullet_sims.egg-info/PKG-INFO
+[0.700s] writing dependency_links to ../../build/bullet_sims/bullet_sims.egg-info/dependency_links.txt
+[0.700s] writing entry points to ../../build/bullet_sims/bullet_sims.egg-info/entry_points.txt
+[0.700s] writing requirements to ../../build/bullet_sims/bullet_sims.egg-info/requires.txt
+[0.700s] writing top-level names to ../../build/bullet_sims/bullet_sims.egg-info/top_level.txt
+[0.700s] writing manifest file '../../build/bullet_sims/bullet_sims.egg-info/SOURCES.txt'
+[0.716s] reading manifest file '../../build/bullet_sims/bullet_sims.egg-info/SOURCES.txt'
+[0.716s] writing manifest file '../../build/bullet_sims/bullet_sims.egg-info/SOURCES.txt'
+[0.716s] running build
+[0.717s] running build_py
+[0.717s] creating /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build
+[0.717s] creating /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib
+[0.717s] creating /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims
+[0.717s] copying bullet_sims/t2_temp.py -> /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims
+[0.717s] copying bullet_sims/__init__.py -> /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims
+[0.717s] running install
+[0.722s] running install_lib
+[0.731s] creating /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims
+[0.732s] copying /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims/t2_temp.py -> /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims
+[0.732s] copying /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build/lib/bullet_sims/__init__.py -> /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims
+[0.732s] byte-compiling /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims/t2_temp.py to t2_temp.cpython-312.pyc
+[0.733s] error: can't copy 'resource/bullet_sims': doesn't exist or not a regular file
+[0.736s] byte-compiling /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages/bullet_sims/__init__.py to __init__.cpython-312.pyc
+[0.736s] running install_data
+[0.736s] creating /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/ament_index
+[0.736s] creating /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/ament_index/resource_index
+[0.737s] creating /home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/ament_index/resource_index/packages
+[0.745s] Invoked command in '/home/ubuntu/Documents/legged_robots_ws/src/bullet_sims' returned '1': AMENT_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/reemc_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/reemc_description:${CMAKE_PREFIX_PATH} PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bullet_sims build --build-base /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build install --record /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/install.log --single-version-externally-managed install_data

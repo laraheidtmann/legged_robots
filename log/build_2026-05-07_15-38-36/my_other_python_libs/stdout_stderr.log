@@ -1,0 +1,36 @@
+running egg_info
+creating ../../build/my_other_python_libs/my_other_python_libs.egg-info
+writing ../../build/my_other_python_libs/my_other_python_libs.egg-info/PKG-INFO
+writing dependency_links to ../../build/my_other_python_libs/my_other_python_libs.egg-info/dependency_links.txt
+writing requirements to ../../build/my_other_python_libs/my_other_python_libs.egg-info/requires.txt
+writing top-level names to ../../build/my_other_python_libs/my_other_python_libs.egg-info/top_level.txt
+writing manifest file '../../build/my_other_python_libs/my_other_python_libs.egg-info/SOURCES.txt'
+reading manifest file '../../build/my_other_python_libs/my_other_python_libs.egg-info/SOURCES.txt'
+writing manifest file '../../build/my_other_python_libs/my_other_python_libs.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build
+creating /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build/lib
+creating /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build/lib/my_other_python_libs
+copying my_other_python_libs/other_python_lib_1.py -> /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build/lib/my_other_python_libs
+copying my_other_python_libs/other_python_lib_2.py -> /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build/lib/my_other_python_libs
+copying my_other_python_libs/__init__.py -> /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build/lib/my_other_python_libs
+running install
+running install_lib
+creating /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs
+copying /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build/lib/my_other_python_libs/other_python_lib_1.py -> /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs
+copying /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build/lib/my_other_python_libs/other_python_lib_2.py -> /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs
+copying /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build/lib/my_other_python_libs/__init__.py -> /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs
+byte-compiling /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs/other_python_lib_1.py to other_python_lib_1.cpython-312.pyc
+byte-compiling /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs/other_python_lib_2.py to other_python_lib_2.cpython-312.pyc
+byte-compiling /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs/__init__.py to __init__.cpython-312.pyc
+running install_data
+creating /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/ament_index
+creating /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/ament_index/resource_index
+creating /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/ament_index/resource_index/packages
+copying resource/my_other_python_libs -> /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/ament_index/resource_index/packages
+copying package.xml -> /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs
+running install_egg_info
+Copying ../../build/my_other_python_libs/my_other_python_libs.egg-info to /home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages/my_other_python_libs-0.0.0-py3.12.egg-info
+running install_scripts
+writing list of installed files to '/home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/install.log'

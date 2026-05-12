@@ -1,0 +1,592 @@
+[0.043s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.043s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=10, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff920852e0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff92279940>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff92279940>>)
+[0.058s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.058s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.058s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.058s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.058s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.058s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.058s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/ubuntu/Documents/legged_robots_ws'
+[0.058s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.058s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.058s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.058s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.058s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.058s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.058s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.058s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.058s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.068s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extensions ['ignore', 'ignore_ament_install']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extension 'ignore'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extension 'ignore_ament_install'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extensions ['colcon_pkg']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extension 'colcon_pkg'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extensions ['colcon_meta']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extension 'colcon_meta'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extensions ['ros']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extension 'ros'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extensions ['cmake', 'python']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extension 'cmake'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extension 'python'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extensions ['python_setup_py']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(rviz_config) by extension 'python_setup_py'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src/bullet_sims) by extensions ['ignore', 'ignore_ament_install']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src/bullet_sims) by extension 'ignore'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src/bullet_sims) by extension 'ignore_ament_install'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src/bullet_sims) by extensions ['colcon_pkg']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src/bullet_sims) by extension 'colcon_pkg'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src/bullet_sims) by extensions ['colcon_meta']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src/bullet_sims) by extension 'colcon_meta'
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src/bullet_sims) by extensions ['ros']
+[0.069s] Level 1:colcon.colcon_core.package_identification:_identify(src/bullet_sims) by extension 'ros'
+[0.070s] DEBUG:colcon.colcon_core.package_identification:Package 'src/bullet_sims' with type 'ros.ament_python' and name 'bullet_sims'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_other_python_libs) by extensions ['ignore', 'ignore_ament_install']
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_other_python_libs) by extension 'ignore'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_other_python_libs) by extension 'ignore_ament_install'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_other_python_libs) by extensions ['colcon_pkg']
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_other_python_libs) by extension 'colcon_pkg'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_other_python_libs) by extensions ['colcon_meta']
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_other_python_libs) by extension 'colcon_meta'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_other_python_libs) by extensions ['ros']
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_other_python_libs) by extension 'ros'
+[0.070s] DEBUG:colcon.colcon_core.package_identification:Package 'src/my_other_python_libs' with type 'ros.ament_python' and name 'my_other_python_libs'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_py_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_py_pkg) by extension 'ignore'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_py_pkg) by extension 'ignore_ament_install'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_py_pkg) by extensions ['colcon_pkg']
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_py_pkg) by extension 'colcon_pkg'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_py_pkg) by extensions ['colcon_meta']
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_py_pkg) by extension 'colcon_meta'
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_py_pkg) by extensions ['ros']
+[0.070s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_py_pkg) by extension 'ros'
+[0.071s] DEBUG:colcon.colcon_core.package_identification:Package 'src/my_py_pkg' with type 'ros.ament_python' and name 'my_py_pkg'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_python_libs) by extensions ['ignore', 'ignore_ament_install']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_python_libs) by extension 'ignore'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_python_libs) by extension 'ignore_ament_install'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_python_libs) by extensions ['colcon_pkg']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_python_libs) by extension 'colcon_pkg'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_python_libs) by extensions ['colcon_meta']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_python_libs) by extension 'colcon_meta'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_python_libs) by extensions ['ros']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_python_libs) by extension 'ros'
+[0.071s] DEBUG:colcon.colcon_core.package_identification:Package 'src/my_python_libs' with type 'ros.ament_python' and name 'my_python_libs'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_tutorials) by extensions ['ignore', 'ignore_ament_install']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_tutorials) by extension 'ignore'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_tutorials) by extension 'ignore_ament_install'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_tutorials) by extensions ['colcon_pkg']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_tutorials) by extension 'colcon_pkg'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_tutorials) by extensions ['colcon_meta']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_tutorials) by extension 'colcon_meta'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_tutorials) by extensions ['ros']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/my_robot_tutorials) by extension 'ros'
+[0.071s] DEBUG:colcon.colcon_core.package_identification:Package 'src/my_robot_tutorials' with type 'ros.ament_python' and name 'my_robot_tutorials'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/reemc_description) by extensions ['ignore', 'ignore_ament_install']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/reemc_description) by extension 'ignore'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/reemc_description) by extension 'ignore_ament_install'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/reemc_description) by extensions ['colcon_pkg']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/reemc_description) by extension 'colcon_pkg'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/reemc_description) by extensions ['colcon_meta']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/reemc_description) by extension 'colcon_meta'
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/reemc_description) by extensions ['ros']
+[0.071s] Level 1:colcon.colcon_core.package_identification:_identify(src/reemc_description) by extension 'ros'
+[0.072s] DEBUG:colcon.colcon_core.package_identification:Package 'src/reemc_description' with type 'ros.ament_cmake' and name 'reemc_description'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros_visuals) by extensions ['ignore', 'ignore_ament_install']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros_visuals) by extension 'ignore'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros_visuals) by extension 'ignore_ament_install'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros_visuals) by extensions ['colcon_pkg']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros_visuals) by extension 'colcon_pkg'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros_visuals) by extensions ['colcon_meta']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros_visuals) by extension 'colcon_meta'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros_visuals) by extensions ['ros']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/ros_visuals) by extension 'ros'
+[0.072s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ros_visuals' with type 'ros.ament_python' and name 'ros_visuals'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/simulator) by extensions ['ignore', 'ignore_ament_install']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/simulator) by extension 'ignore'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/simulator) by extension 'ignore_ament_install'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/simulator) by extensions ['colcon_pkg']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/simulator) by extension 'colcon_pkg'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/simulator) by extensions ['colcon_meta']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/simulator) by extension 'colcon_meta'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/simulator) by extensions ['ros']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/simulator) by extension 'ros'
+[0.072s] DEBUG:colcon.colcon_core.package_identification:Package 'src/simulator' with type 'ros.ament_python' and name 'simulator'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/talos_description) by extensions ['ignore', 'ignore_ament_install']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/talos_description) by extension 'ignore'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/talos_description) by extension 'ignore_ament_install'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/talos_description) by extensions ['colcon_pkg']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/talos_description) by extension 'colcon_pkg'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/talos_description) by extensions ['colcon_meta']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/talos_description) by extension 'colcon_meta'
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/talos_description) by extensions ['ros']
+[0.072s] Level 1:colcon.colcon_core.package_identification:_identify(src/talos_description) by extension 'ros'
+[0.073s] DEBUG:colcon.colcon_core.package_identification:Package 'src/talos_description' with type 'ros.ament_cmake' and name 'talos_description'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extensions ['ignore', 'ignore_ament_install']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extension 'ignore'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extension 'ignore_ament_install'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extensions ['colcon_pkg']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extension 'colcon_pkg'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extensions ['colcon_meta']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extension 'colcon_meta'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extensions ['ros']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extension 'ros'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extensions ['cmake', 'python']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extension 'cmake'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extension 'python'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extensions ['python_setup_py']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2) by extension 'python_setup_py'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extensions ['ignore', 'ignore_ament_install']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extension 'ignore'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extension 'ignore_ament_install'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extensions ['colcon_pkg']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extension 'colcon_pkg'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extensions ['colcon_meta']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extension 'colcon_meta'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extensions ['ros']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extension 'ros'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extensions ['cmake', 'python']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extension 'cmake'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extension 'python'
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extensions ['python_setup_py']
+[0.073s] Level 1:colcon.colcon_core.package_identification:_identify(src/tutorial_2/reemc_description 2) by extension 'python_setup_py'
+[0.073s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.073s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.073s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.073s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.073s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.081s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.081s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.082s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 321 installed packages in /opt/ros/rolling
+[0.082s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.098s] Level 5:colcon.colcon_core.verb:set package 'my_other_python_libs' build argument 'cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_other_python_libs' build argument 'cmake_target' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_other_python_libs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_other_python_libs' build argument 'cmake_clean_cache' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_other_python_libs' build argument 'cmake_clean_first' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_other_python_libs' build argument 'cmake_force_configure' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_other_python_libs' build argument 'ament_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_other_python_libs' build argument 'catkin_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_other_python_libs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.099s] DEBUG:colcon.colcon_core.verb:Building package 'my_other_python_libs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs', 'merge_install': False, 'path': '/home/ubuntu/Documents/legged_robots_ws/src/my_other_python_libs', 'symlink_install': False, 'test_result_base': None}
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_py_pkg' build argument 'cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_py_pkg' build argument 'cmake_target' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_py_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_py_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_py_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_py_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_py_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_py_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_py_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.099s] DEBUG:colcon.colcon_core.verb:Building package 'my_py_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Documents/legged_robots_ws/build/my_py_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg', 'merge_install': False, 'path': '/home/ubuntu/Documents/legged_robots_ws/src/my_py_pkg', 'symlink_install': False, 'test_result_base': None}
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_python_libs' build argument 'cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_python_libs' build argument 'cmake_target' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_python_libs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_python_libs' build argument 'cmake_clean_cache' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_python_libs' build argument 'cmake_clean_first' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_python_libs' build argument 'cmake_force_configure' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_python_libs' build argument 'ament_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_python_libs' build argument 'catkin_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'my_python_libs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.099s] DEBUG:colcon.colcon_core.verb:Building package 'my_python_libs' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Documents/legged_robots_ws/build/my_python_libs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs', 'merge_install': False, 'path': '/home/ubuntu/Documents/legged_robots_ws/src/my_python_libs', 'symlink_install': False, 'test_result_base': None}
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'reemc_description' build argument 'cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'reemc_description' build argument 'cmake_target' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'reemc_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'reemc_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'reemc_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'reemc_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'reemc_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'reemc_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'reemc_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.099s] DEBUG:colcon.colcon_core.verb:Building package 'reemc_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Documents/legged_robots_ws/build/reemc_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description', 'merge_install': False, 'path': '/home/ubuntu/Documents/legged_robots_ws/src/reemc_description', 'symlink_install': False, 'test_result_base': None}
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'ros_visuals' build argument 'cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'ros_visuals' build argument 'cmake_target' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'ros_visuals' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'ros_visuals' build argument 'cmake_clean_cache' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'ros_visuals' build argument 'cmake_clean_first' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'ros_visuals' build argument 'cmake_force_configure' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'ros_visuals' build argument 'ament_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'ros_visuals' build argument 'catkin_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'ros_visuals' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.099s] DEBUG:colcon.colcon_core.verb:Building package 'ros_visuals' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Documents/legged_robots_ws/build/ros_visuals', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals', 'merge_install': False, 'path': '/home/ubuntu/Documents/legged_robots_ws/src/ros_visuals', 'symlink_install': False, 'test_result_base': None}
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'simulator' build argument 'cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'simulator' build argument 'cmake_target' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'simulator' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'simulator' build argument 'cmake_clean_cache' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'simulator' build argument 'cmake_clean_first' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'simulator' build argument 'cmake_force_configure' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'simulator' build argument 'ament_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'simulator' build argument 'catkin_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'simulator' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.099s] DEBUG:colcon.colcon_core.verb:Building package 'simulator' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Documents/legged_robots_ws/build/simulator', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Documents/legged_robots_ws/install/simulator', 'merge_install': False, 'path': '/home/ubuntu/Documents/legged_robots_ws/src/simulator', 'symlink_install': False, 'test_result_base': None}
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'talos_description' build argument 'cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'talos_description' build argument 'cmake_target' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'talos_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'talos_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'talos_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'talos_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'talos_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'talos_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.099s] Level 5:colcon.colcon_core.verb:set package 'talos_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.099s] DEBUG:colcon.colcon_core.verb:Building package 'talos_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Documents/legged_robots_ws/build/talos_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Documents/legged_robots_ws/install/talos_description', 'merge_install': False, 'path': '/home/ubuntu/Documents/legged_robots_ws/src/talos_description', 'symlink_install': False, 'test_result_base': None}
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'bullet_sims' build argument 'cmake_args' from command line to 'None'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'bullet_sims' build argument 'cmake_target' from command line to 'None'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'bullet_sims' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'bullet_sims' build argument 'cmake_clean_cache' from command line to 'False'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'bullet_sims' build argument 'cmake_clean_first' from command line to 'False'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'bullet_sims' build argument 'cmake_force_configure' from command line to 'False'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'bullet_sims' build argument 'ament_cmake_args' from command line to 'None'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'bullet_sims' build argument 'catkin_cmake_args' from command line to 'None'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'bullet_sims' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.100s] DEBUG:colcon.colcon_core.verb:Building package 'bullet_sims' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Documents/legged_robots_ws/build/bullet_sims', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims', 'merge_install': False, 'path': '/home/ubuntu/Documents/legged_robots_ws/src/bullet_sims', 'symlink_install': False, 'test_result_base': None}
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'my_robot_tutorials' build argument 'cmake_args' from command line to 'None'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'my_robot_tutorials' build argument 'cmake_target' from command line to 'None'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'my_robot_tutorials' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'my_robot_tutorials' build argument 'cmake_clean_cache' from command line to 'False'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'my_robot_tutorials' build argument 'cmake_clean_first' from command line to 'False'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'my_robot_tutorials' build argument 'cmake_force_configure' from command line to 'False'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'my_robot_tutorials' build argument 'ament_cmake_args' from command line to 'None'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'my_robot_tutorials' build argument 'catkin_cmake_args' from command line to 'None'
+[0.100s] Level 5:colcon.colcon_core.verb:set package 'my_robot_tutorials' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.100s] DEBUG:colcon.colcon_core.verb:Building package 'my_robot_tutorials' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/Documents/legged_robots_ws/build/my_robot_tutorials', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials', 'merge_install': False, 'path': '/home/ubuntu/Documents/legged_robots_ws/src/my_robot_tutorials', 'symlink_install': False, 'test_result_base': None}
+[0.100s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.100s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.100s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/ubuntu/Documents/legged_robots_ws/src/my_python_libs' with build type 'ament_python'
+[0.100s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_python_libs', 'ament_prefix_path')
+[0.101s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.101s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/hook/ament_prefix_path.ps1'
+[0.102s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/hook/ament_prefix_path.dsv'
+[0.102s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/hook/ament_prefix_path.sh'
+[0.102s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.102s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.103s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/ubuntu/Documents/legged_robots_ws/src/reemc_description' with build type 'ament_cmake'
+[0.103s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/ubuntu/Documents/legged_robots_ws/src/reemc_description'
+[0.103s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.103s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.104s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/ubuntu/Documents/legged_robots_ws/src/my_other_python_libs' with build type 'ament_python'
+[0.104s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_other_python_libs', 'ament_prefix_path')
+[0.105s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/hook/ament_prefix_path.ps1'
+[0.105s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/hook/ament_prefix_path.dsv'
+[0.105s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/hook/ament_prefix_path.sh'
+[0.105s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.105s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.106s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/ubuntu/Documents/legged_robots_ws/src/my_py_pkg' with build type 'ament_python'
+[0.106s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_py_pkg', 'ament_prefix_path')
+[0.106s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/hook/ament_prefix_path.ps1'
+[0.106s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/hook/ament_prefix_path.dsv'
+[0.106s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/hook/ament_prefix_path.sh'
+[0.107s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.107s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.108s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/ubuntu/Documents/legged_robots_ws/src/ros_visuals' with build type 'ament_python'
+[0.108s] Level 1:colcon.colcon_core.shell:create_environment_hook('ros_visuals', 'ament_prefix_path')
+[0.108s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/hook/ament_prefix_path.ps1'
+[0.108s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/hook/ament_prefix_path.dsv'
+[0.108s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/hook/ament_prefix_path.sh'
+[0.108s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.108s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.110s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/ubuntu/Documents/legged_robots_ws/src/simulator' with build type 'ament_python'
+[0.110s] Level 1:colcon.colcon_core.shell:create_environment_hook('simulator', 'ament_prefix_path')
+[0.110s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/hook/ament_prefix_path.ps1'
+[0.110s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/hook/ament_prefix_path.dsv'
+[0.110s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/hook/ament_prefix_path.sh'
+[0.110s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.110s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.113s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/ubuntu/Documents/legged_robots_ws/src/talos_description' with build type 'ament_cmake'
+[0.113s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/ubuntu/Documents/legged_robots_ws/src/talos_description'
+[0.113s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.113s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.195s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/ubuntu/Documents/legged_robots_ws/src/my_python_libs'
+[0.196s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.196s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.199s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/build/reemc_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --build /home/ubuntu/Documents/legged_robots_ws/build/reemc_description -- -j10 -l10
+[0.278s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/ubuntu/Documents/legged_robots_ws/src/my_other_python_libs'
+[0.278s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.279s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.360s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/ubuntu/Documents/legged_robots_ws/src/my_py_pkg'
+[0.360s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.360s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.438s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/ubuntu/Documents/legged_robots_ws/src/ros_visuals'
+[0.438s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.438s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.516s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/ubuntu/Documents/legged_robots_ws/src/simulator'
+[0.516s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.516s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.523s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/build/talos_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --build /home/ubuntu/Documents/legged_robots_ws/build/talos_description -- -j10 -l10
+[0.523s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/build/reemc_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --build /home/ubuntu/Documents/legged_robots_ws/build/reemc_description -- -j10 -l10
+[0.527s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/build/reemc_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --install /home/ubuntu/Documents/legged_robots_ws/build/reemc_description
+[0.536s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(reemc_description)
+[0.536s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/build/reemc_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --install /home/ubuntu/Documents/legged_robots_ws/build/reemc_description
+[0.538s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description' for CMake module files
+[0.539s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description' for CMake config files
+[0.539s] Level 1:colcon.colcon_core.shell:create_environment_hook('reemc_description', 'cmake_prefix_path')
+[0.539s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/hook/cmake_prefix_path.ps1'
+[0.540s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/hook/cmake_prefix_path.dsv'
+[0.540s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/hook/cmake_prefix_path.sh'
+[0.541s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/bin'
+[0.541s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/lib/pkgconfig/reemc_description.pc'
+[0.541s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/lib/python3.12/site-packages'
+[0.541s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/bin'
+[0.542s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.ps1'
+[0.542s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.dsv'
+[0.543s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.sh'
+[0.543s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.bash'
+[0.544s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.zsh'
+[0.544s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/colcon-core/packages/reemc_description)
+[0.545s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(reemc_description)
+[0.545s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description' for CMake module files
+[0.545s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description' for CMake config files
+[0.546s] Level 1:colcon.colcon_core.shell:create_environment_hook('reemc_description', 'cmake_prefix_path')
+[0.546s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/hook/cmake_prefix_path.ps1'
+[0.546s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/hook/cmake_prefix_path.dsv'
+[0.546s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/hook/cmake_prefix_path.sh'
+[0.547s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/bin'
+[0.547s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/lib/pkgconfig/reemc_description.pc'
+[0.547s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/lib/python3.12/site-packages'
+[0.547s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/bin'
+[0.547s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.ps1'
+[0.547s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.dsv'
+[0.547s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.sh'
+[0.547s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.bash'
+[0.548s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.zsh'
+[0.548s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/colcon-core/packages/reemc_description)
+[0.548s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/ubuntu/Documents/legged_robots_ws/src/bullet_sims' with build type 'ament_python'
+[0.548s] Level 1:colcon.colcon_core.shell:create_environment_hook('bullet_sims', 'ament_prefix_path')
+[0.548s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/hook/ament_prefix_path.ps1'
+[0.549s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/hook/ament_prefix_path.dsv'
+[0.549s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/hook/ament_prefix_path.sh'
+[0.549s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.549s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.552s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/build/talos_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --build /home/ubuntu/Documents/legged_robots_ws/build/talos_description -- -j10 -l10
+[0.553s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/build/talos_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --install /home/ubuntu/Documents/legged_robots_ws/build/talos_description
+[0.667s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/ubuntu/Documents/legged_robots_ws/src/bullet_sims'
+[0.668s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.668s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.670s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(talos_description)
+[0.670s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description' for CMake module files
+[0.671s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/build/talos_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --install /home/ubuntu/Documents/legged_robots_ws/build/talos_description
+[0.671s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description' for CMake config files
+[0.671s] Level 1:colcon.colcon_core.shell:create_environment_hook('talos_description', 'cmake_prefix_path')
+[0.671s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/hook/cmake_prefix_path.ps1'
+[0.671s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/hook/cmake_prefix_path.dsv'
+[0.672s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/hook/cmake_prefix_path.sh'
+[0.672s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/bin'
+[0.672s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/lib/pkgconfig/talos_description.pc'
+[0.672s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/lib/python3.12/site-packages'
+[0.672s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/bin'
+[0.672s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.ps1'
+[0.672s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.dsv'
+[0.673s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.sh'
+[0.673s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.bash'
+[0.673s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.zsh'
+[0.673s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/colcon-core/packages/talos_description)
+[0.673s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(talos_description)
+[0.673s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description' for CMake module files
+[0.675s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description' for CMake config files
+[0.675s] Level 1:colcon.colcon_core.shell:create_environment_hook('talos_description', 'cmake_prefix_path')
+[0.675s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/hook/cmake_prefix_path.ps1'
+[0.676s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/hook/cmake_prefix_path.dsv'
+[0.677s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/hook/cmake_prefix_path.sh'
+[0.678s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/bin'
+[0.678s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/lib/pkgconfig/talos_description.pc'
+[0.678s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/lib/python3.12/site-packages'
+[0.678s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/bin'
+[0.678s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.ps1'
+[0.678s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.dsv'
+[0.679s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.sh'
+[0.679s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.bash'
+[0.679s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/talos_description/package.zsh'
+[0.679s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/talos_description/share/colcon-core/packages/talos_description)
+[0.877s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/src/my_python_libs': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_python_libs/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_python_libs build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_python_libs/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_python_libs/install.log --single-version-externally-managed install_data
+[0.882s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/src/ros_visuals': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/ros_visuals/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ros_visuals build --build-base /home/ubuntu/Documents/legged_robots_ws/build/ros_visuals/build install --record /home/ubuntu/Documents/legged_robots_ws/build/ros_visuals/install.log --single-version-externally-managed install_data
+[0.897s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/src/my_other_python_libs': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_other_python_libs build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/install.log --single-version-externally-managed install_data
+[0.910s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/src/simulator': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/simulator/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/simulator/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/simulator build --build-base /home/ubuntu/Documents/legged_robots_ws/build/simulator/build install --record /home/ubuntu/Documents/legged_robots_ws/build/simulator/install.log --single-version-externally-managed install_data
+[0.915s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/src/my_py_pkg': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_py_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_py_pkg build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_py_pkg/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_py_pkg/install.log --single-version-externally-managed install_data
+[1.055s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/src/bullet_sims': AMENT_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/reemc_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/reemc_description:${CMAKE_PREFIX_PATH} PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bullet_sims build --build-base /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build install --record /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/install.log --single-version-externally-managed install_data
+[1.144s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs' for CMake module files
+[1.145s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/src/my_python_libs' returned '0': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_python_libs/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_python_libs build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_python_libs/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_python_libs/install.log --single-version-externally-managed install_data
+[1.145s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs' for CMake config files
+[1.146s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/lib'
+[1.146s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/bin'
+[1.146s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/lib/pkgconfig/my_python_libs.pc'
+[1.146s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/lib/python3.12/site-packages'
+[1.146s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_python_libs', 'pythonpath')
+[1.146s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/hook/pythonpath.ps1'
+[1.146s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/hook/pythonpath.dsv'
+[1.147s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/hook/pythonpath.sh'
+[1.148s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/bin'
+[1.148s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_python_libs)
+[1.148s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/package.ps1'
+[1.149s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/package.dsv'
+[1.149s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/package.sh'
+[1.150s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/package.bash'
+[1.150s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/my_python_libs/package.zsh'
+[1.150s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/share/colcon-core/packages/my_python_libs)
+[1.151s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/ubuntu/Documents/legged_robots_ws/src/my_robot_tutorials' with build type 'ament_python'
+[1.151s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_robot_tutorials', 'ament_prefix_path')
+[1.151s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/hook/ament_prefix_path.ps1'
+[1.152s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/hook/ament_prefix_path.dsv'
+[1.152s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/hook/ament_prefix_path.sh'
+[1.153s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.153s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.157s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals' for CMake module files
+[1.157s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/src/ros_visuals' returned '0': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/ros_visuals/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ros_visuals build --build-base /home/ubuntu/Documents/legged_robots_ws/build/ros_visuals/build install --record /home/ubuntu/Documents/legged_robots_ws/build/ros_visuals/install.log --single-version-externally-managed install_data
+[1.158s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals' for CMake config files
+[1.158s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/lib'
+[1.158s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/bin'
+[1.158s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/lib/pkgconfig/ros_visuals.pc'
+[1.159s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/lib/python3.12/site-packages'
+[1.159s] Level 1:colcon.colcon_core.shell:create_environment_hook('ros_visuals', 'pythonpath')
+[1.159s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/hook/pythonpath.ps1'
+[1.160s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/hook/pythonpath.dsv'
+[1.160s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/hook/pythonpath.sh'
+[1.161s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/bin'
+[1.161s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ros_visuals)
+[1.161s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/package.ps1'
+[1.162s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/package.dsv'
+[1.162s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/package.sh'
+[1.163s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/package.bash'
+[1.163s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/ros_visuals/package.zsh'
+[1.163s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/ros_visuals/share/colcon-core/packages/ros_visuals)
+[1.258s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/ubuntu/Documents/legged_robots_ws/src/my_robot_tutorials'
+[1.258s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.258s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.260s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/simulator' for CMake module files
+[1.261s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/src/simulator' returned '0': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/simulator/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/simulator/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/simulator build --build-base /home/ubuntu/Documents/legged_robots_ws/build/simulator/build install --record /home/ubuntu/Documents/legged_robots_ws/build/simulator/install.log --single-version-externally-managed install_data
+[1.261s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/simulator' for CMake config files
+[1.261s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/simulator/lib'
+[1.261s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/simulator/bin'
+[1.261s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/simulator/lib/pkgconfig/simulator.pc'
+[1.261s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/simulator/lib/python3.12/site-packages'
+[1.261s] Level 1:colcon.colcon_core.shell:create_environment_hook('simulator', 'pythonpath')
+[1.261s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/hook/pythonpath.ps1'
+[1.262s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/hook/pythonpath.dsv'
+[1.262s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/hook/pythonpath.sh'
+[1.262s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/simulator/bin'
+[1.262s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(simulator)
+[1.262s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/package.ps1'
+[1.262s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/package.dsv'
+[1.263s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/package.sh'
+[1.263s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/package.bash'
+[1.263s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/simulator/package.zsh'
+[1.263s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/simulator/share/colcon-core/packages/simulator)
+[1.263s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg' for CMake module files
+[1.264s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/src/my_py_pkg' returned '0': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_py_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_py_pkg build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_py_pkg/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_py_pkg/install.log --single-version-externally-managed install_data
+[1.264s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg' for CMake config files
+[1.264s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/lib'
+[1.264s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/bin'
+[1.264s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/lib/pkgconfig/my_py_pkg.pc'
+[1.264s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/lib/python3.12/site-packages'
+[1.264s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_py_pkg', 'pythonpath')
+[1.264s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/hook/pythonpath.ps1'
+[1.265s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/hook/pythonpath.dsv'
+[1.265s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/hook/pythonpath.sh'
+[1.265s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/bin'
+[1.265s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_py_pkg)
+[1.265s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/package.ps1'
+[1.265s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/package.dsv'
+[1.265s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/package.sh'
+[1.266s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/package.bash'
+[1.266s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/my_py_pkg/package.zsh'
+[1.266s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/my_py_pkg/share/colcon-core/packages/my_py_pkg)
+[1.266s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs' for CMake module files
+[1.266s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/src/my_other_python_libs' returned '0': PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_other_python_libs build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_other_python_libs/install.log --single-version-externally-managed install_data
+[1.266s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs' for CMake config files
+[1.267s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib'
+[1.267s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/bin'
+[1.267s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/pkgconfig/my_other_python_libs.pc'
+[1.267s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/lib/python3.12/site-packages'
+[1.267s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_other_python_libs', 'pythonpath')
+[1.267s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/hook/pythonpath.ps1'
+[1.267s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/hook/pythonpath.dsv'
+[1.267s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/hook/pythonpath.sh'
+[1.267s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/bin'
+[1.267s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_other_python_libs)
+[1.267s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/package.ps1'
+[1.268s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/package.dsv'
+[1.268s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/package.sh'
+[1.268s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/package.bash'
+[1.268s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/my_other_python_libs/package.zsh'
+[1.268s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/my_other_python_libs/share/colcon-core/packages/my_other_python_libs)
+[1.287s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims' for CMake module files
+[1.287s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/src/bullet_sims' returned '0': AMENT_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/reemc_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/reemc_description:${CMAKE_PREFIX_PATH} PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bullet_sims build --build-base /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/build install --record /home/ubuntu/Documents/legged_robots_ws/build/bullet_sims/install.log --single-version-externally-managed install_data
+[1.288s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims' for CMake config files
+[1.288s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib'
+[1.288s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/bin'
+[1.288s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/pkgconfig/bullet_sims.pc'
+[1.288s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/lib/python3.12/site-packages'
+[1.288s] Level 1:colcon.colcon_core.shell:create_environment_hook('bullet_sims', 'pythonpath')
+[1.288s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/hook/pythonpath.ps1'
+[1.288s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/hook/pythonpath.dsv'
+[1.288s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/hook/pythonpath.sh'
+[1.289s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/bin'
+[1.289s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bullet_sims)
+[1.289s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/package.ps1'
+[1.289s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/package.dsv'
+[1.289s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/package.sh'
+[1.289s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/package.bash'
+[1.289s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/bullet_sims/package.zsh'
+[1.289s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/bullet_sims/share/colcon-core/packages/bullet_sims)
+[1.503s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/Documents/legged_robots_ws/src/my_robot_tutorials': AMENT_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs:${AMENT_PREFIX_PATH} PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_robot_tutorials/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/lib/python3.12/site-packages:/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_robot_tutorials build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_robot_tutorials/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_robot_tutorials/install.log --single-version-externally-managed install_data
+[1.700s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials' for CMake module files
+[1.700s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/Documents/legged_robots_ws/src/my_robot_tutorials' returned '0': AMENT_PREFIX_PATH=/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs:${AMENT_PREFIX_PATH} PYTHONPATH=/home/ubuntu/Documents/legged_robots_ws/build/my_robot_tutorials/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/lib/python3.12/site-packages:/home/ubuntu/Documents/legged_robots_ws/install/my_python_libs/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(venv) /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_robot_tutorials build --build-base /home/ubuntu/Documents/legged_robots_ws/build/my_robot_tutorials/build install --record /home/ubuntu/Documents/legged_robots_ws/build/my_robot_tutorials/install.log --single-version-externally-managed install_data
+[1.700s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials' for CMake config files
+[1.701s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/lib'
+[1.701s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/bin'
+[1.701s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/lib/pkgconfig/my_robot_tutorials.pc'
+[1.701s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/lib/python3.12/site-packages'
+[1.701s] Level 1:colcon.colcon_core.shell:create_environment_hook('my_robot_tutorials', 'pythonpath')
+[1.701s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/hook/pythonpath.ps1'
+[1.701s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/hook/pythonpath.dsv'
+[1.702s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/hook/pythonpath.sh'
+[1.702s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/bin'
+[1.702s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(my_robot_tutorials)
+[1.703s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/package.ps1'
+[1.703s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/package.dsv'
+[1.703s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/package.sh'
+[1.703s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/package.bash'
+[1.703s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/my_robot_tutorials/package.zsh'
+[1.703s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/Documents/legged_robots_ws/install/my_robot_tutorials/share/colcon-core/packages/my_robot_tutorials)
+[1.703s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.704s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.704s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.704s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.707s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.707s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.707s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.714s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.714s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/Documents/legged_robots_ws/install/local_setup.ps1'
+[1.715s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/ubuntu/Documents/legged_robots_ws/install/_local_setup_util_ps1.py'
+[1.715s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/Documents/legged_robots_ws/install/setup.ps1'
+[1.716s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/Documents/legged_robots_ws/install/local_setup.sh'
+[1.716s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/ubuntu/Documents/legged_robots_ws/install/_local_setup_util_sh.py'
+[1.716s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/Documents/legged_robots_ws/install/setup.sh'
+[1.716s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/Documents/legged_robots_ws/install/local_setup.bash'
+[1.717s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/Documents/legged_robots_ws/install/setup.bash'
+[1.717s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/Documents/legged_robots_ws/install/local_setup.zsh'
+[1.717s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/Documents/legged_robots_ws/install/setup.zsh'

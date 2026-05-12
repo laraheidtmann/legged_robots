@@ -1,0 +1,2 @@
+[console_scripts]
+t2_temp = pybullet_sims.t2_temp:main

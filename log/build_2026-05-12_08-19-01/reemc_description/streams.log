@@ -1,0 +1,20 @@
+[0.113s] Invoking command in '/home/ubuntu/Documents/legged_robots_ws/build/reemc_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --build /home/ubuntu/Documents/legged_robots_ws/build/reemc_description -- -j10 -l10
+[0.511s] Invoked command in '/home/ubuntu/Documents/legged_robots_ws/build/reemc_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --build /home/ubuntu/Documents/legged_robots_ws/build/reemc_description -- -j10 -l10
+[0.520s] Invoking command in '/home/ubuntu/Documents/legged_robots_ws/build/reemc_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --install /home/ubuntu/Documents/legged_robots_ws/build/reemc_description
+[0.526s] -- Install configuration: ""
+[0.529s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/ament_index/resource_index/package_run_dependencies/reemc_description
+[0.530s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/ament_index/resource_index/parent_prefix_path/reemc_description
+[0.530s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/environment/ament_prefix_path.sh
+[0.531s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/environment/ament_prefix_path.dsv
+[0.531s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/environment/path.sh
+[0.531s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/environment/path.dsv
+[0.531s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/local_setup.bash
+[0.532s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/local_setup.sh
+[0.532s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/local_setup.zsh
+[0.532s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/local_setup.dsv
+[0.532s] -- Installing: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.dsv
+[0.532s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/ament_index/resource_index/packages/reemc_description
+[0.532s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/cmake/reemc_descriptionConfig.cmake
+[0.532s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/cmake/reemc_descriptionConfig-version.cmake
+[0.532s] -- Up-to-date: /home/ubuntu/Documents/legged_robots_ws/install/reemc_description/share/reemc_description/package.xml
+[0.540s] Invoked command in '/home/ubuntu/Documents/legged_robots_ws/build/reemc_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/rolling VIRTUAL_ENV_PROMPT=(venv) /usr/bin/cmake --install /home/ubuntu/Documents/legged_robots_ws/build/reemc_description
