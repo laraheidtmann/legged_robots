@@ -297,3 +297,7 @@ ros2 run pybullet_sims t2_temp
 sudo ln -sf /lib/aarch64-linux-gnu/liburdfdom_world.so.4.0 /lib/aarch64-linux-gnu/liburdfdom_world.so.6
 
 sudo ln -sf /lib/aarch64-linux-gnu/liburdfdom_model_state.so.4.0 /lib/aarch64-linux-gnu/liburdfdom_model_state.so.6
+
+
+git config --global user.email "ge78puq@mytum.de"
+git config --global user.name laraheidtmann
