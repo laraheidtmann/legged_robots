@@ -1,3 +1,0 @@
-[console_scripts]
-t21 = bullet_sims.t21.py:main
-t2_temp = bullet_sims.t2_temp:main

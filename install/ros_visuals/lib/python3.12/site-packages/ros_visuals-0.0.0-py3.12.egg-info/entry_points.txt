@@ -1,5 +1,0 @@
-[console_scripts]
-coordinate_pub = ros_visuals.t11:main
-pub = ros_visuals.publisher_node:main
-sub = ros_visuals.subscriber_node:main
-t12 = ros_visuals.t12:main
