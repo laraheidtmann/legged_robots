@@ -1,8 +1,8 @@
-# Install script for directory: /home/ubuntu/Documents/legged_robots_ws/src/reemc_description
+# Install script for directory: /home/ubuntu/Documents/legged_robots/src/reemc_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ubuntu/Documents/legged_robots_ws/install/reemc_description")
+  set(CMAKE_INSTALL_PREFIX "/home/ubuntu/Documents/legged_robots/install/reemc_description")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,11 +43,11 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/reemc_description")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/reemc_description")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/parent_prefix_path" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/reemc_description")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/parent_prefix_path" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/reemc_description")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -55,7 +55,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description/environment" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_environment_hooks/ament_prefix_path.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description/environment" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_environment_hooks/ament_prefix_path.dsv")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -63,42 +63,42 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description/environment" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_environment_hooks/path.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description/environment" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_environment_hooks/path.dsv")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_environment_hooks/local_setup.bash")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_environment_hooks/local_setup.bash")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_environment_hooks/local_setup.sh")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_environment_hooks/local_setup.sh")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_environment_hooks/local_setup.zsh")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_environment_hooks/local_setup.zsh")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_environment_hooks/local_setup.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_environment_hooks/local_setup.dsv")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_environment_hooks/package.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_environment_hooks/package.dsv")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/packages" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_index/share/ament_index/resource_index/packages/reemc_description")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/packages" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_index/share/ament_index/resource_index/packages/reemc_description")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description/cmake" TYPE FILE FILES
-    "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_core/reemc_descriptionConfig.cmake"
-    "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/ament_cmake_core/reemc_descriptionConfig-version.cmake"
+    "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_core/reemc_descriptionConfig.cmake"
+    "/home/ubuntu/Documents/legged_robots/build/reemc_description/ament_cmake_core/reemc_descriptionConfig-version.cmake"
     )
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots_ws/src/reemc_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/reemc_description" TYPE FILE FILES "/home/ubuntu/Documents/legged_robots/src/reemc_description/package.xml")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -109,5 +109,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ubuntu/Documents/legged_robots_ws/build/reemc_description/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ubuntu/Documents/legged_robots/build/reemc_description/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

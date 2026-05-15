@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/Documents/legged_robots_ws/src/talos_description
+CMAKE_SOURCE_DIR = /home/ubuntu/Documents/legged_robots/src/talos_description
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/Documents/legged_robots_ws/build/talos_description
+CMAKE_BINARY_DIR = /home/ubuntu/Documents/legged_robots/build/talos_description
 
 # Utility rule file for talos_description_uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/talos_description_uninstall.dir/compiler_depend.make
 include CMakeFiles/talos_description_uninstall.dir/progress.make
 
 CMakeFiles/talos_description_uninstall:
-	/usr/bin/cmake -P /home/ubuntu/Documents/legged_robots_ws/build/talos_description/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/ubuntu/Documents/legged_robots/build/talos_description/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 talos_description_uninstall: CMakeFiles/talos_description_uninstall
 talos_description_uninstall: CMakeFiles/talos_description_uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/talos_description_uninstall.dir/clean:
 .PHONY : CMakeFiles/talos_description_uninstall.dir/clean
 
 CMakeFiles/talos_description_uninstall.dir/depend:
-	cd /home/ubuntu/Documents/legged_robots_ws/build/talos_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Documents/legged_robots_ws/src/talos_description /home/ubuntu/Documents/legged_robots_ws/src/talos_description /home/ubuntu/Documents/legged_robots_ws/build/talos_description /home/ubuntu/Documents/legged_robots_ws/build/talos_description /home/ubuntu/Documents/legged_robots_ws/build/talos_description/CMakeFiles/talos_description_uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/ubuntu/Documents/legged_robots/build/talos_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Documents/legged_robots/src/talos_description /home/ubuntu/Documents/legged_robots/src/talos_description /home/ubuntu/Documents/legged_robots/build/talos_description /home/ubuntu/Documents/legged_robots/build/talos_description /home/ubuntu/Documents/legged_robots/build/talos_description/CMakeFiles/talos_description_uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/talos_description_uninstall.dir/depend
 

@@ -11,11 +11,8 @@ setup.py
 bullet_sims/__init__.py
 bullet_sims/t21.py
 bullet_sims/t2_temp.py
-bullet_sims.egg-info/PKG-INFO
-bullet_sims.egg-info/SOURCES.txt
-bullet_sims.egg-info/dependency_links.txt
-bullet_sims.egg-info/entry_points.txt
-bullet_sims.egg-info/requires.txt
-bullet_sims.egg-info/top_level.txt
-bullet_sims.egg-info/zip-safe
 resource/bullet_sims
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
+test/test_xmllint.py
