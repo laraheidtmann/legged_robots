@@ -1,4 +1,11 @@
 follow these steps: 
+quickstart: 
+navigate to legged_robots/
+chmod +x setup_workspace.sh
+./setup_workspace.sh
+
+--> all dependencies are installed
+
 
 
 pip install -r requirements.txt
