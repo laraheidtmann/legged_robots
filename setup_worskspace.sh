@@ -115,32 +115,28 @@ echo "Creating urdfdom compatibility symlinks..."
 
 
 sudo ln -sf /lib/aarch64-linux-gnu/liburdfdom_sensor.so.4.0 \
-
-/lib/aarch64-linux-gnu/liburdfdom_sensor.so.6
+    /lib/aarch64-linux-gnu/liburdfdom_sensor.so.6
 
 
 
 
 
 sudo ln -sf /lib/aarch64-linux-gnu/liburdfdom_model.so.4.0 \
-
-/lib/aarch64-linux-gnu/liburdfdom_model.so.6
+    /lib/aarch64-linux-gnu/liburdfdom_model.so.6
 
 
 
 
 
 sudo ln -sf /lib/aarch64-linux-gnu/liburdfdom_world.so.4.0 \
-
-/lib/aarch64-linux-gnu/liburdfdom_world.so.6
+    /lib/aarch64-linux-gnu/liburdfdom_world.so.6
 
 
 
 
 
 sudo ln -sf /lib/aarch64-linux-gnu/liburdfdom_model_state.so.4.0 \
-
-/lib/aarch64-linux-gnu/liburdfdom_model_state.so.6
+    /lib/aarch64-linux-gnu/liburdfdom_model_state.so.6
 
 
 
@@ -182,12 +178,7 @@ echo "Building workspace..."
 
 rm -rf build install log
 
-
-
 colcon build 
-
-
-
 
 
 echo "Sourcing workspace..."
