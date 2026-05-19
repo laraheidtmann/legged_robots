@@ -90,16 +90,6 @@ sudo apt install -y ros-rolling-xacro ros-rolling-urdf ros-rolling-pinocchio lib
 
 
 
-echo "Adding venv site-packages to PYTHONPATH in ~/.bashrc..."
-
-
-
-echo 'export PYTHONPATH=/home/ubuntu/Documents/legged_robots/venv/lib/python3.12/site-packages:$PYTHONPATH' >> ~/.bashrc
-
-
-
-source ~/.bashrc
-
 
 
 
@@ -188,6 +178,15 @@ echo "Sourcing workspace..."
 source install/setup.bash
 
 
+echo "Adding venv site-packages to PYTHONPATH in ~/.bashrc..."
+
+
+
+echo 'export PYTHONPATH=/home/ubuntu/Documents/legged_robots/venv/lib/python3.12/site-packages:$PYTHONPATH' >> ~/.bashrc
+
+
+
+source ~/.bashrc
 
 
 

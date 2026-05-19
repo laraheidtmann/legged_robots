@@ -120,6 +120,11 @@ Kd=np.diag(Kd_diag)
 
 #####
 
+###Exercise 3: Home posture controller
+def spline_joint_pos(q_ini,q_home):
+    
+
+
 done = False
 while not done:
     # update the simulator and the robot
