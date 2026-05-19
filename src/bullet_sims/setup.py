@@ -23,6 +23,7 @@ setup(
             't2_temp = bullet_sims.t2_temp:main',
             't21 = bullet_sims.t21.py:main',
             't22 = bullet_sims.t22.py:main',
+            't23 = bullet_sims.t23.py:main',
             
 
         ],

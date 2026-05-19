@@ -4,6 +4,11 @@ from simulator.pybullet_wrapper import PybulletWrapper
 from simulator.robot import Robot
 import pinocchio as pin
 
+import rclpy
+from rclpy.executors import ExternalShutdownException
+from rclpy.node import Node
+from std_msgs.msg import String
+
 # For REEM-C robot
 #urdf = "src/reemc_description/robots/reemc.urdf"
 #path_meshes = "src/reemc_description/meshes/../.."
@@ -135,7 +140,26 @@ q_home[a+22:a+30]= np.array([0,-0.24, 0, -1, 0,0,0,0])
 
 
 
+class TestImport2(Node):
 
+    def __init__(self):
+        super().__init__('test_import_2')
+        self.joint_state_publisher=self.create_publisher(String,"joint_states",10)
+        self.timer=self.create_timer(0.5,self.timer_callback)
+    
+    def timer_callback(self):
+        msg=String()
+        msg.data="Hi"
+        self.joint_state_publisher.publish(msg)
+        
+def main(args=None):
+    try:
+        with rclpy.init(args=args):
+            node = JointStatePublisher()
+
+            rclpy.spin(node)
+    except (KeyboardInterrupt, ExternalShutdownException):
+        pass
 
 done = False
 while not done:
