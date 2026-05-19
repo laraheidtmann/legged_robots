@@ -7,7 +7,7 @@ import pinocchio as pin
 import rclpy
 from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
-from std_msgs.msg import String
+from sensor_msgs.msg import JointState
 
 # For REEM-C robot
 #urdf = "src/reemc_description/robots/reemc.urdf"
@@ -151,19 +151,18 @@ class TestImport2(Node):
         msg=String()
         msg.data="Hi"
         self.joint_state_publisher.publish(msg)
-        
-def main(args=None):
-    try:
-        with rclpy.init(args=args):
-            node = JointStatePublisher()
 
-            rclpy.spin(node)
-    except (KeyboardInterrupt, ExternalShutdownException):
-        pass
 
 done = False
+rclpy.init()
+node=rclpy.create_node("talos_simulator")
+joint_state_publisher=node.create_publisher(JointState,"joint_states",10)
+
 while not done:
     # update the simulator and the robot
+    publish_rate=30
+    publish_every=int(1000/publish_rate)
+    step_count=0
     simulator.step()
     simulator.debug()
     robot.update()
@@ -180,6 +179,20 @@ while not done:
 
 
     tau=Kp @(qd-q) - Kd @ v
+    if step_count % publish_every ==0:
+        msg=JointState()
+        msg.header.stamp
+
+        msg.header.stamp = node.get_clock().now().to_msg() 
+        msg.name  = robot.actuatedJointNames()
+        msg.position = q.tolist() 
+        msg.velocity = v.tolist() 
+        msg.effort  = tau.tolist() 
+        joint_state_publisher.publish(msg)
+    step_count +=1
     
     # command to the robot
     robot.setActuatedJointTorques(tau)
+    #rclpy.spin_once(node)
+
+rclpy.shutdown()
