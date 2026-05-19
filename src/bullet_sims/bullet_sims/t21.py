@@ -90,30 +90,19 @@ pb.resetDebugVisualizerCamera(
 tau = q_actuated_home*0
 
 #####TODO: implement joint space PD Controller
-print(robot.actuatedJointNames())
-n_joints=model.nv -6
+n_joints=model.nv -6  #probably 32
 qd=np.zeros(n_joints)
 
 Kp_diag= np.ones(n_joints) *10.0
 Kd_diag = np.ones(n_joints) * 1.0
 
 
+Kp_diag[0:12]=3 *300
+Kd_diag[0:12]=1 
 
-#Torso
-Kp_diag[0:2]=5.0
-Kd_diag[0:2]=0.5
+Kp_diag[12:]=1 * 300
+Kd_diag[12:]=1 
 
-#Head
-Kp_diag[2:4]=1.0
-Kd_diag[2:4]=0.1
-
-#Arms +grippers: soft
-Kp_diag[4:20]=5.0
-Kd_diag[4:20]=0.5
-
-#leg stiffness higher
-Kp_diag[20:32]=20.0
-Kd_diag[20:32]=2.0
 
 Kp=np.diag(Kp_diag)
 Kd=np.diag(Kd_diag)

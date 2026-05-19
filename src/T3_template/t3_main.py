@@ -52,7 +52,7 @@ class Talos(Robot):
 # Controllers
 ################################################################################
 
-class JointSpaceController:
+class JointSpaceController: #takes robot gains kp and kd and has updtade taking all the reference --> compute torque
     """JointSpaceController
     Tracking controller in jointspace
     """

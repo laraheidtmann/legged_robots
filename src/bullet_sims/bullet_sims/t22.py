@@ -41,6 +41,7 @@ q_actuated_home[22:30] = np.array([0, 0, 0, 0, 0, 0, 0, 0 ])
 # Initialization position including floating base
 q_home = np.hstack([np.array([0, 0, z_init, 0, 0, 0, 1]), q_actuated_home])
 
+
 # setup the task stack
 modelWrap = pin.RobotWrapper.BuildFromURDF(urdf,                        # Model description
                                            path_meshes,                 # Model geometry descriptors 
@@ -90,39 +91,49 @@ pb.resetDebugVisualizerCamera(
 tau = q_actuated_home*0
 
 #####TODO: implement joint space PD Controller
-print(robot.actuatedJointNames())
-n_joints=model.nv -6
+n_joints=model.nv -6  # 32
 qd=np.zeros(n_joints)
 
 Kp_diag= np.ones(n_joints) *10.0
 Kd_diag = np.ones(n_joints) * 1.0
 
 
+Kp_diag[0:12]=3 *300
+Kd_diag[0:12]=1 
 
-#Torso
-Kp_diag[0:2]=5.0
-Kd_diag[0:2]=0.5
+Kp_diag[12:]=1 * 300
+Kd_diag[12:]=1 
 
-#Head
-Kp_diag[2:4]=1.0
-Kd_diag[2:4]=0.1
-
-#Arms +grippers: soft
-Kp_diag[4:20]=5.0
-Kd_diag[4:20]=0.5
-
-#leg stiffness higher
-Kp_diag[20:32]=20.0
-Kd_diag[20:32]=2.0
 
 Kp=np.diag(Kp_diag)
 Kd=np.diag(Kd_diag)
 
 #####
 
-###Exercise 3: Home posture controller
-def spline_joint_pos(q_ini,q_home):
-    
+def spline_joint_positions(q_ini,q_home,t,T):
+    if t>=T:
+        return q_home.copy()
+    #normalize time
+    s=t/T
+    alpha=3.0 * s**2 -2.0 * s**3
+
+    return pin.interpolate(model,q_ini,q_home,alpha)
+
+T_spline=2.0
+t_sim=0.0
+dt=1.0/1000
+q_ini=robot.q().copy()
+
+#new q_home:
+#TODO: new home position:
+q_home[:6]= np.array([0,0,-0.44,0.9,-0.45,0]) #left leg
+q_home[6:12]= np.array([0,0,-0.44,0.9,-0.45,0]) #right leg
+
+q_home[14:21]= np.array([0,-0.24, 0, -1, 0,0,0])
+q_home[21:28]= np.array([0,-0.24, 0, -1, 0,0,0])
+
+
+
 
 
 done = False
@@ -137,6 +148,12 @@ while not done:
 
     q=q_full[7:]
     v=v_full[6:]
+
+    q_desired_full=spline_joint_positions(q_ini,q_home,t_sim,T_spline)
+    t_sim+=dt
+    qd=q_desired_full[7:]
+    print(np.round(qd,2))
+
 
     tau=Kp @(qd-q) - Kd @ v
     
