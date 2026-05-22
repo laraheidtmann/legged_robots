@@ -10,6 +10,8 @@ import pinocchio as pin
 from pinocchio.robot_wrapper import RobotWrapper
 
 from enum import Enum
+from tf2_ros import TransformBroadcaster
+from geometry_msgs.msg import TransformStamped
 
 # ROS
 import rclpy
@@ -30,23 +32,99 @@ class State(Enum):
 ################################################################################
 
 class Talos(Robot):
+    
+
     def __init__(self, simulator, q=None, verbose=True, useFixedBase=True):
-        #TODO: Create RobotWrapper (fixed base), Call base class constructor, make publisher  
-        None
+           
+            urdf = "src/talos_description/robots/talos_reduced.urdf"
+            path_meshes = "src/talos_description/meshes/../.."
+            z_init = 1.15
+            q_actuated_home = np.zeros(32)
+            q_actuated_home[:6] = np.array([0, 0, 0, 0, 0, 0])
+            q_actuated_home[6:12] = np.array([0, 0, 0, 0, 0, 0])
+            q_actuated_home[14:22] = np.array([0, 0, 0, 0, 0, 0, 0, 0 ])
+            q_actuated_home[22:30] = np.array([0, 0, 0, 0, 0, 0, 0, 0 ])
+
+            # Initialization position including floating base
+            q_home = np.hstack([np.array([0, 0, z_init, 0, 0, 0, 1]), q_actuated_home])
+
+             
+            
+        
+            self._wrapper = pin.RobotWrapper.BuildFromURDF(urdf,                        # Model description
+                                                path_meshes,                 # Model geometry descriptors 
+                                                None,   # Floating base model. Use "None" if fixed
+                                                True,                        # Printout model details
+                                                None)                        # Load meshes different from the descripor
+            
+            # Get model from wrapper
+            self.model= self._wrapper.model
+
+            super().__init__(simulator,urdf,self.model, [0, 0, z_init],       # Floating base initial position
+              [0,0,0,1] ,q=q_actuated_home ,useFixedBase=useFixedBase)
+
+            self.node=rclpy.create_node("teleoperator")
+            self.joint_state_publisher=self.node.create_publisher(JointState,"joint_states",10)
+            self.tf_broadcaster=TransformBroadcaster(self.node)
+            #TODO: Create RobotWrapper (fixed base), Call base class constructor, make publisher  
+            #None
         
     def update(self):
         # TODO: update base class, update pinocchio robot wrapper's kinematics
-        None
-    
+        # Updates self._q and self._v from PyBullet
+
+        super().update()
+        # Update Pinocchio kinematics using current state
+
+        pin.forwardKinematics(
+
+            self._wrapper.model,
+            self._wrapper.data,
+            self.q(),
+            self.v(),
+
+        )
+
+
+        pin.updateFramePlacements(
+
+            self._wrapper.model,
+            self._wrapper.data,
+
+        )
+ 
+    def publish(self):
+
+        msg = JointState()
+        msg.header.stamp = self.node.get_clock().now().to_msg()
+        msg.name = self.actuatedJointNames()
+        msg.position = list(self.actuatedJointPosition())
+        msg.velocity = list(self.actuatedJointVelocity())
+
+        self.joint_state_publisher.publish(msg)
+
+
+        tf = TransformStamped()
+        tf.header.stamp = msg.header.stamp
+        tf.header.frame_id = "world"
+        tf.child_frame_id = "base_link"
+
+        tf.transform.translation.x = 0.0
+        tf.transform.translation.y = 0.0
+        tf.transform.translation.z = 0.0
+        tf.transform.rotation.x = 0.0
+        tf.transform.rotation.y = 0.0
+        tf.transform.rotation.z = 0.0
+        tf.transform.rotation.w = 1.0
+
+        self.tf_broadcaster.sendTransform(tf)
+        
     def wrapper(self):
         return self._wrapper
 
     def data(self):
         return self._wrapper.data
     
-    def publish(self):
-        # TODO: publish robot state to ros
-        None
 
 ################################################################################
 # Controllers
@@ -61,6 +139,7 @@ class JointSpaceController: #takes robot gains kp and kd and has updtade taking 
         None
     
     def update(self, q_r, q_r_dot, q_r_ddot):
+        self.wrapper.update()
         # Compute jointspace torque, return torque
         None
     
@@ -136,10 +215,16 @@ class Envionment:
         None
 
 def main():    
+    rclpy.init()
+
     env = Envionment()
+    robot=Talos(env.simulator)
+
     
     # TODO: Keep looping while ros is running 
     while True:
+        robot.update()
+        robot.publish()
         t = env.simulator.simTime()
         dt = env.simulator.stepTime()
         
