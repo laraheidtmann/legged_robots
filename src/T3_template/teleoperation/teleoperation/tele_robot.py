@@ -61,6 +61,7 @@ class InteractiveMarkerNode(Node):
 
     def _spawn_marker(self, transform):
         int_marker = InteractiveMarker()
+        int_marker.scale=0.2
         int_marker.header.frame_id = 'base_link'
         int_marker.header.stamp = self.get_clock().now().to_msg()
         int_marker.name = 'my_marker'
@@ -76,9 +77,9 @@ class InteractiveMarkerNode(Node):
         # Visible box
         box_marker = Marker()
         box_marker.type = Marker.CUBE
-        box_marker.scale.x = 0.1
-        box_marker.scale.y = 0.1
-        box_marker.scale.z = 0.1
+        box_marker.scale.x = 0.05
+        box_marker.scale.y = 0.05
+        box_marker.scale.z = 0.05
         box_marker.color.r = 0.0
         box_marker.color.g = 0.5
         box_marker.color.b = 0.5

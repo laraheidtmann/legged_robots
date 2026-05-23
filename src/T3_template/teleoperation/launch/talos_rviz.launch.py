@@ -17,7 +17,7 @@ def generate_launch_description():
 
     urdf_path = os.path.abspath("src/talos_description/robots/talos_reduced.urdf")
     path_meshes = "src/talos_description/meshes/../.."
-    rviz_config= "/home/ubuntu/Documents/legged_robots/rviz_config/talos.rviz"
+    rviz_config= "/home/ubuntu/Documents/legged_robots/rviz_config/talos_tele_controlled.rviz"
 
 
     with open(urdf_path, "r") as f:
