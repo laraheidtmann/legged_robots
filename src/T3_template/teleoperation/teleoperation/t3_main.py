@@ -166,7 +166,7 @@ class CartesianSpaceController:
         self.Kp=Kp
         self.Kd=Kd
         self.joint_id=self.robot.wrapper().model.getJointId(joint_name)
-        self.damp=1e-6
+        self.damp=1e-3
         # save gains, robot ref
        
         
