@@ -7,6 +7,9 @@
   <maintainer email="ge78puq@mytum.de">laraheidtmann</maintainer>
   <license>TODO: License declaration</license>
 
+  <depend>scipy</depend>
+
+
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_mypy</test_depend>

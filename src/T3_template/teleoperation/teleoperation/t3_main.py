@@ -12,7 +12,7 @@ from pinocchio.robot_wrapper import RobotWrapper
 from enum import Enum
 from tf2_ros import TransformBroadcaster
 from geometry_msgs.msg import TransformStamped
-
+from scipy.interpolate import CubicSpline
 # ROS
 import rclpy
 from rclpy.node import Node
@@ -136,10 +136,23 @@ class JointSpaceController: #takes robot gains kp and kd and has updtade taking 
     """
     def __init__(self, robot, Kp, Kd):        
         # Save gains, robot ref
+        self.Kp=Kp
+        self.Kd=Kd
+        self.robot=robot
         None
     
     def update(self, q_r, q_r_dot, q_r_ddot):
-        self.wrapper.update()
+        q=self.robot.q()
+        v=self.robot.v()
+        model=self.robot.wrapper().model
+        data=self.robot.wrapper().data
+
+        h=pin.rnea(model,data,q,v,np.zeros(model.nv))
+        M=pin.crba(model,data,q)
+        M=(M+M.T) / 2.0
+        tau = M @ (q_r_ddot - self.Kd @ (v-q_r_dot)- self.Kp @ (q-q_r)) + h
+        return tau
+
         # Compute jointspace torque, return torque
         None
     
@@ -148,12 +161,99 @@ class CartesianSpaceController:
     Tracking controller in cartspace
     """
     def __init__(self, robot, joint_name, Kp, Kd):
+        self.robot=robot
+        self.joint_name=joint_name
+        self.Kp=Kp
+        self.Kd=Kd
+        self.joint_id=self.robot.wrapper().model.getJointId(joint_name)
+        self.damp=1e-6
         # save gains, robot ref
-        None
+       
+        
         
     def update(self, X_r, X_dot_r, X_ddot_r):
-        # compute cartesian control torque, return torque
-        None
+
+        q = self.robot.q()
+        v = self.robot.v()
+
+        model = self.robot.wrapper().model
+        data = self.robot.wrapper().data
+
+        # Update kinematics
+        pin.forwardKinematics(model, data, q, v)
+        pin.computeJointJacobians(model, data, q)
+        pin.updateFramePlacements(model, data)
+
+        # Current hand pose
+        X = data.oMi[self.joint_id]
+
+
+        # Pose error: current -> desired
+
+        # same idea as example: iMd = current.actInv(desired)
+        iMd = X.actInv(X_r)
+        err = pin.log(iMd).vector
+
+
+        # Joint Jacobian in joint/local frame
+        J = pin.computeJointJacobian(
+            model,
+            data,
+            q,
+            self.joint_id
+        )
+
+        # Same correction as Pinocchio IK example
+        J = -pin.Jlog6(iMd.inverse()) @ J
+
+        # Current Cartesian velocity
+        X_dot = J @ v
+
+        # Desired Cartesian acceleration
+        X_ddot_des = (
+            X_ddot_r
+            - self.Kd @ (X_dot - X_dot_r)
+            + self.Kp @ err
+        )
+
+        # Compute Jdot*qdot term
+        pin.forwardKinematics(model, data, q, v, np.zeros(model.nv))
+
+        acc = pin.getClassicalAcceleration(
+            model,
+            data,
+            self.joint_id,
+            pin.ReferenceFrame.LOCAL
+        ).vector
+
+        Jdot_v = acc
+
+
+        # Damped pseudo-inverse:
+        # J# = J.T (J J.T + lambda I)^-1
+
+        J_pinv = J.T @ la.inv(
+            J @ J.T + self.damp * np.eye(6)
+        )
+
+
+        # Map Cartesian desired acceleration to joint acceleration
+        q_ddot_des = J_pinv @ (X_ddot_des - Jdot_v)
+
+        # Dynamics
+        M = pin.crba(model, data, q)
+        M = (M + M.T) / 2.0
+        h = pin.rnea(
+            model,
+            data,
+            q,
+            v,
+            np.zeros(model.nv)
+        )
+
+        tau = M @ q_ddot_des + h
+
+        return tau
 
 ################################################################################
 # Application
@@ -213,23 +313,133 @@ class Envionment:
         # TODO: publish ros stuff
         
         None
+class JointSpline:
+
+    def __init__(self, q_init, q_goal, duration):
+
+
+        self.duration = duration
+
+
+        # start/end times
+
+        t_points = [0.0, duration]
+
+
+        # shape: (2, 32)
+
+        q_points = np.vstack([q_init, q_goal])
+
+
+        # zero start/end velocity
+
+        self.spline = CubicSpline(
+
+            t_points,
+
+            q_points,
+
+            axis=0,
+
+            bc_type=((1, np.zeros(len(q_init))),
+
+                     (1, np.zeros(len(q_goal))))
+
+        )
+
+
+    def evaluate(self, t):
+
+
+        t = np.clip(t, 0.0, self.duration)
+
+
+        q = self.spline(t)
+
+        q_dot = self.spline(t, 1)
+
+        q_ddot = self.spline(t, 2)
+
+
+        return q, q_dot, q_ddot
 
 def main():    
     rclpy.init()
 
     env = Envionment()
     robot=Talos(env.simulator)
+    ##set Kp and Kd
+    n_joints=robot.model.nv   # 32
 
+    Kp_diag= np.ones(n_joints) *10.0
+    Kd_diag = np.ones(n_joints) * 1.0
+
+
+    Kp_diag[0:12]=3 *100
+    Kd_diag[0:12]=1 
+
+    Kp_diag[12:]=1 * 20
+    Kd_diag[12:]=3
+
+
+    Kp=np.diag(Kp_diag)
+    Kd=np.diag(Kd_diag)
+    Kp_cart=np.eye(6) *5
+    Kd_cart=np.eye(6) *0.5
     
+
+    joint_space_controller=JointSpaceController(robot,Kp,Kd)
+
+    q_init=robot.q().copy()
+    q_home=q_init
+
+
+    # new home position robot should move towards to
+    a=0
+    q_home[a:a+6]= np.array([0,0,0.0,0.0,0.0,0]) #left leg
+    q_home[a+6:a+12]= np.array([0,0,0.0,0.0,0.0,0]) #right leg
+
+    q_home[a+14:a+22]= np.array([0,-0.24, 0, -1, 0,0,0,0])
+    q_home[a+22:a+30]= np.array([0,-0.24, 0, -1, 0,0,0,0])
+    
+    #q_home[a+14:a+22]= np.array([0,0.0, 0, -1, 0,0,0,0])
+    #q_home[a+22:a+30]= np.array([0,0.0, 0, -1, 0,0,0,0])
+    
+    #todo: spline positions from q_init to q_home
+    spline=JointSpline(q_init,q_home,5.0)
+
+    cartesian_space_controller=CartesianSpaceController(robot,"arm_right_7_joint",Kp_cart,Kd_cart)
+
+  
+
+
     # TODO: Keep looping while ros is running 
-    while True:
+    while rclpy.ok():
         robot.update()
         robot.publish()
+
         t = env.simulator.simTime()
         dt = env.simulator.stepTime()
         
         env.update(t, dt)
-        
+
+        q_r,q_r_dot,q_r_ddot=spline.evaluate(t)
+
+    
+        if t<5:
+            tau=joint_space_controller.update(q_r,q_r_dot,q_r_ddot)
+            robot.update()
+            X_Goal=robot.data().oMi[robot.wrapper().model.getJointId("arm_right_7_joint")].copy()
+        else:
+            X_r=X_Goal
+            X_dot_r=np.zeros(6)
+            X_ddot_r=np.zeros(6)
+            tau=cartesian_space_controller.update(X_r,X_dot_r,X_ddot_r)
+
+
+        robot.setActuatedJointTorques(tau)
+
+       
         env.simulator.debug()
         env.simulator.step()
         
