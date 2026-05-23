@@ -25,7 +25,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            't3=teleoperation.t3_main:main'
+            't3=teleoperation.t3_main:main',
+            'marker=teleoperation.tele_robot:main',
         ],
     },
 )

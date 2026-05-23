@@ -118,6 +118,27 @@ class Talos(Robot):
         tf.transform.rotation.w = 1.0
 
         self.tf_broadcaster.sendTransform(tf)
+
+        # Also broadcast the hand frame
+        hand_id = self._wrapper.model.getJointId("arm_right_7_joint")
+        hand_pose = self._wrapper.data.oMi[hand_id]
+
+        tf_hand = TransformStamped()
+        tf_hand.header.stamp = msg.header.stamp
+        tf_hand.header.frame_id = "base_link"
+        tf_hand.child_frame_id = "arm_right_7_joint"
+
+        tf_hand.transform.translation.x = hand_pose.translation[0]
+        tf_hand.transform.translation.y = hand_pose.translation[1]
+        tf_hand.transform.translation.z = hand_pose.translation[2]
+
+        quat = pin.Quaternion(hand_pose.rotation)
+        tf_hand.transform.rotation.x = quat.x
+        tf_hand.transform.rotation.y = quat.y
+        tf_hand.transform.rotation.z = quat.z
+        tf_hand.transform.rotation.w = quat.w
+
+        self.tf_broadcaster.sendTransform(tf_hand)
         
     def wrapper(self):
         return self._wrapper
@@ -168,94 +189,55 @@ class CartesianSpaceController:
         self.joint_id=self.robot.wrapper().model.getJointId(joint_name)
         self.damp=1e-3
         # save gains, robot ref
-       
-        
-        
     def update(self, X_r, X_dot_r, X_ddot_r):
 
         q = self.robot.q()
         v = self.robot.v()
-
         model = self.robot.wrapper().model
         data = self.robot.wrapper().data
 
-        # Update kinematics
-        pin.forwardKinematics(model, data, q, v)
+        pin.forwardKinematics(model, data, q, v, np.zeros(model.nv))
         pin.computeJointJacobians(model, data, q)
         pin.updateFramePlacements(model, data)
 
-        # Current hand pose
+
+        # Current pose
         X = data.oMi[self.joint_id]
 
 
-        # Pose error: current -> desired
-
-        # same idea as example: iMd = current.actInv(desired)
+        # Error in local frame — points from current toward desired
         iMd = X.actInv(X_r)
-        err = pin.log(iMd).vector
+        err = pin.log(iMd).vector  # positive = need to move toward X_r
 
-
-        # Joint Jacobian in joint/local frame
-        J = pin.computeJointJacobian(
-            model,
-            data,
-            q,
-            self.joint_id
-        )
-
-        # Same correction as Pinocchio IK example
-        J = -pin.Jlog6(iMd.inverse()) @ J
+        # Raw Jacobian, no Jlog6 correction
+        J = pin.computeJointJacobian(model, data, q, self.joint_id)
 
         # Current Cartesian velocity
         X_dot = J @ v
 
-        # Desired Cartesian acceleration
-        X_ddot_des = (
-            X_ddot_r
-            - self.Kd @ (X_dot - X_dot_r)
-            + self.Kp @ err
-        )
-
-        # Compute Jdot*qdot term
-        pin.forwardKinematics(model, data, q, v, np.zeros(model.nv))
-
-        acc = pin.getClassicalAcceleration(
-            model,
-            data,
-            self.joint_id,
-            pin.ReferenceFrame.LOCAL
+        # Jdot*qdot bias term
+        Jdot_v = pin.getClassicalAcceleration(
+            model, data, self.joint_id, pin.ReferenceFrame.LOCAL
         ).vector
 
-        Jdot_v = acc
+        # PD law — +Kp*err because err points toward goal
+        X_ddot_des = X_ddot_r - self.Kd @ (X_dot - X_dot_r) + self.Kp @ err
 
+        # Damped pseudo-inverse
+        J_pinv = J.T @ np.linalg.inv(J @ J.T + self.damp * np.eye(6))
 
-        # Damped pseudo-inverse:
-        # J# = J.T (J J.T + lambda I)^-1
-
-        J_pinv = J.T @ la.inv(
-            J @ J.T + self.damp * np.eye(6)
-        )
-
-
-        # Map Cartesian desired acceleration to joint acceleration
+        # Map to joint accelerations
         q_ddot_des = J_pinv @ (X_ddot_des - Jdot_v)
 
-        # Dynamics
+        # Inverse dynamics
         M = pin.crba(model, data, q)
         M = (M + M.T) / 2.0
-        h = pin.rnea(
-            model,
-            data,
-            q,
-            v,
-            np.zeros(model.nv)
-        )
+        h = pin.rnea(model, data, q, v, np.zeros(model.nv))
 
-        tau = M @ q_ddot_des + h
-
-        return tau
-
-################################################################################
+        return M @ q_ddot_des + h
+            
+            
+  ##############################################################################
 # Application
 ################################################################################
     
@@ -385,7 +367,7 @@ def main():
     Kp=np.diag(Kp_diag)
     Kd=np.diag(Kd_diag)
     Kp_cart=np.eye(6) *5
-    Kd_cart=np.eye(6) *0.5
+    Kd_cart=np.eye(6) *1
     
 
     joint_space_controller=JointSpaceController(robot,Kp,Kd)
@@ -428,10 +410,10 @@ def main():
     
         if t<5:
             tau=joint_space_controller.update(q_r,q_r_dot,q_r_ddot)
-            robot.update()
+            #robot.update()
             X_Goal=robot.data().oMi[robot.wrapper().model.getJointId("arm_right_7_joint")].copy()
         else:
-            X_r=X_Goal
+            X_r=X_Goal          
             X_dot_r=np.zeros(6)
             X_ddot_r=np.zeros(6)
             tau=cartesian_space_controller.update(X_r,X_dot_r,X_ddot_r)
