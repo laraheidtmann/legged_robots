@@ -239,6 +239,7 @@ class CartesianSpaceController:
         h = pin.rnea(model, data, q, v, np.zeros(model.nv))
 
         N=np.eye(model.nv) -J.T @ J_pinv.T
+
         return M @ q_ddot_des + h, N
             
             
@@ -350,6 +351,8 @@ def main():
 
     Kp=np.diag(Kp_diag)
     Kd=np.diag(Kd_diag)
+    Kp_posture=np.diag(np.ones(n_joints))*10.0
+    Kd_posture=np.diag(np.ones(n_joints))*1
     Kp_cart=np.eye(6) *5
     Kd_cart=np.eye(6) *1
     
@@ -402,7 +405,10 @@ def main():
             X_r=robot.X_Goal          
             X_dot_r=np.zeros(6)
             X_ddot_r=np.zeros(6)
-            tau_posture=joint_space_controller.update(q_r,q_r_dot,q_r_ddot)
+            q=robot.q()
+            v=robot.v()
+            
+            tau_posture=-Kp_posture @ (q-q_home) -Kd_posture @ v
         
             tau_cart,N=cartesian_space_controller.update(X_r,X_dot_r,X_ddot_r)
             tau=tau_cart + N @ tau_posture
@@ -410,7 +416,6 @@ def main():
 
 
         robot.setActuatedJointTorques(tau)
-
        
         env.simulator.debug()
         env.simulator.step()
