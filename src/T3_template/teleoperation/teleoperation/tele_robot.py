@@ -3,121 +3,139 @@
 
 import sys
 
-from interactive_markers import InteractiveMarkerServer
 import rclpy
-from visualization_msgs.msg import InteractiveMarker
-from visualization_msgs.msg import InteractiveMarkerControl
-from visualization_msgs.msg import Marker
+
+from rclpy.node import Node
+
+from interactive_markers import InteractiveMarkerServer
+
+from visualization_msgs.msg import InteractiveMarker, InteractiveMarkerControl, Marker
+
 from tf2_ros import TransformListener, Buffer
+
 from geometry_msgs.msg import PoseStamped
 
 
-def processFeedback(feedback):
-    msg=PoseStamped()
-    p = feedback.pose.position
 
-    node.marker_pos_pub.publish(msg)
-    
-    print(f'{feedback.marker_name} is now at {p.x}, {p.y}, {p.z}')
+class InteractiveMarkerNode(Node):
+
+
+    def __init__(self):
+
+        super().__init__('simple_marker')
+
+        # TF2
+        self.tf_buffer = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
+
+        # Publisher
+        self.marker_pos_pub = self.create_publisher(PoseStamped, 'marker_pose', 10)
+
+        # Interactive marker server
+        self.server = InteractiveMarkerServer(self, 'simple_marker')
+
+        # Wait for TF to become available before spawning
+        self.create_timer(1.0, self._init_marker)
+        self._spawned = False
+
+
+    def _init_marker(self):
+        if self._spawned:
+            return
+
+        try:
+            transform = self.tf_buffer.lookup_transform(
+                'base_link',
+                'arm_right_7_joint',
+                rclpy.time.Time()
+
+            )
+        except Exception as e:
+            self.get_logger().info(f'TF not available yet: {e}')
+            return
+
+        self._spawn_marker(transform)
+        self._spawned = True
+        self.get_logger().info('Marker spawned at hand position!')
+
+
+    def _spawn_marker(self, transform):
+        int_marker = InteractiveMarker()
+        int_marker.header.frame_id = 'base_link'
+        int_marker.header.stamp = self.get_clock().now().to_msg()
+        int_marker.name = 'my_marker'
+        int_marker.description = 'Simple 6-DOF Control'
+
+        # Spawn at hand position
+        t = transform.transform
+        int_marker.pose.position.x = t.translation.x
+        int_marker.pose.position.y = t.translation.y
+        int_marker.pose.position.z = t.translation.z
+        int_marker.pose.orientation = t.rotation
+
+        # Visible box
+        box_marker = Marker()
+        box_marker.type = Marker.CUBE
+        box_marker.scale.x = 0.1
+        box_marker.scale.y = 0.1
+        box_marker.scale.z = 0.1
+        box_marker.color.r = 0.0
+        box_marker.color.g = 0.5
+        box_marker.color.b = 0.5
+        box_marker.color.a = 1.0
+
+        box_control = InteractiveMarkerControl()
+        box_control.always_visible = True
+        box_control.markers.append(box_marker)
+        int_marker.controls.append(box_control)
+
+        # 6DOF controls
+        for name, mode, x, y, z in [
+            ('move_x',   InteractiveMarkerControl.MOVE_AXIS,   1, 0, 0),
+            ('move_y',   InteractiveMarkerControl.MOVE_AXIS,   0, 1, 0),
+            ('move_z',   InteractiveMarkerControl.MOVE_AXIS,   0, 0, 1),
+            ('rotate_x', InteractiveMarkerControl.ROTATE_AXIS, 1, 0, 0),
+            ('rotate_y', InteractiveMarkerControl.ROTATE_AXIS, 0, 1, 0),
+            ('rotate_z', InteractiveMarkerControl.ROTATE_AXIS, 0, 0, 1),
+
+        ]:
+
+            control = InteractiveMarkerControl()
+            control.name = name
+            control.interaction_mode = mode
+            control.orientation.x = float(x)
+            control.orientation.y = float(y)
+            control.orientation.z = float(z)
+            control.orientation.w = 1.0
+            int_marker.controls.append(control)
+
+        self.server.insert(int_marker, feedback_callback=self._feedback_callback)
+        self.server.applyChanges()
+
+
+    def _feedback_callback(self, feedback):
+
+        msg = PoseStamped()
+        msg.header = feedback.header
+        msg.pose = feedback.pose
+        self.marker_pos_pub.publish(msg)
+
+        p = feedback.pose.position
+        self.get_logger().info(f'{feedback.marker_name} is now at {p.x:.2f}, {p.y:.2f}, {p.z:.2f}')
+
+
+def main():
+
+    rclpy.init(args=sys.argv)
+
+    node = InteractiveMarkerNode()
+
+    rclpy.spin(node)
+
+    node.server.shutdown()
 
 
 
 if __name__ == '__main__':
-     main()
 
-def main():
-    rclpy.init(args=sys.argv)
-    node = rclpy.create_node('simple_marker')
-    node.tf_buffer=Buffer()
-    node.tf_listener=TransformListener(node.tf_buffer,node)
-    node.marker_pos_pub=node.create_publisher(PoseStamped,"marker_pose",10)
-
-
-    # create an interactive marker server on the namespace simple_marker
-    server = InteractiveMarkerServer(node, 'simple_marker')
-
-    # create an interactive marker for our server
-    int_marker = InteractiveMarker()
-    int_marker.header.frame_id = 'arm_right_7_joint'
-    int_marker.name = 'my_marker'
-    int_marker.description = 'Simple 6-DOF Control'
-
-    # create a grey box marker
-    box_marker = Marker()
-    box_marker.type = Marker.CUBE
-    box_marker.scale.x = 0.45
-    box_marker.scale.y = 0.45
-    box_marker.scale.z = 0.45
-    box_marker.color.r = 0.0
-    box_marker.color.g = 0.5
-    box_marker.color.b = 0.5
-    box_marker.color.a = 1.0
-
-    # create a non-interactive control which contains the box
-    box_control = InteractiveMarkerControl()
-    box_control.always_visible = True
-    box_control.markers.append(box_marker)
-
-    # add the control to the interactive marker
-    int_marker.controls.append(box_control)
-
-    # create a control which will move the box
-    # this control does not contain any markers,
-    # which will cause RViz to insert two arrows
-    rotate_control = InteractiveMarkerControl()
-    rotate_control.name = 'move_x'
-    rotate_control.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
-    rotate_control.orientation.x=1.0
-    rotate_control.orientation.w=1.0   
-    int_marker.controls.append(rotate_control)
- 
-    
-    rotate_control = InteractiveMarkerControl()
-    rotate_control.name = 'move_y'
-    rotate_control.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
-    rotate_control.orientation.y=1.0
-    rotate_control.orientation.w=1.0
-    int_marker.controls.append(rotate_control)
-
-
-    rotate_control = InteractiveMarkerControl()
-    rotate_control.name = 'move_z'
-    rotate_control.interaction_mode = InteractiveMarkerControl.MOVE_AXIS
-    rotate_control.orientation.z=1.0
-    rotate_control.orientation.w=1.0
-    int_marker.controls.append(rotate_control)
-
-
-    rotate_control = InteractiveMarkerControl()
-    rotate_control.name = 'rotate_x'
-    rotate_control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
-    rotate_control.orientation.x=1.0
-    rotate_control.orientation.w=1.0
-    int_marker.controls.append(rotate_control)
-
-
-    rotate_control = InteractiveMarkerControl()
-    rotate_control.name = 'rotate_y'
-    rotate_control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
-    rotate_control.orientation.y=1.0
-    rotate_control.orientation.w=1.0
-    int_marker.controls.append(rotate_control)
-
-
-    rotate_control = InteractiveMarkerControl()
-    rotate_control.name = 'rotate_z'
-    rotate_control.interaction_mode = InteractiveMarkerControl.ROTATE_AXIS
-    rotate_control.orientation.z=1.0
-    rotate_control.orientation.w=1.0
-    int_marker.controls.append(rotate_control)
-
-    # add the control to the interactive marker
-    # add the interactive marker to our collection &
-    # tell the server to call processFeedback() when feedback arrives for it
-    server.insert(int_marker, feedback_callback=processFeedback)
-
-    # 'commit' changes and send to all clients
-    server.applyChanges()
-
-    rclpy.spin(node)
-    server.shutdown()
+    main()

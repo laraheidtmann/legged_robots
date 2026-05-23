@@ -21,7 +21,6 @@ def generate_launch_description():
 
 
     with open(urdf_path, "r") as f:
-
         robot_description = f.read()
 
    
@@ -37,9 +36,15 @@ def generate_launch_description():
 
 
     sim_node = Node(
-        package="bullet_sims",
-        executable="t23",
-        name="t23",
+        package="teleoperation",
+        executable="t3",
+        name="t3",
+        output="screen",
+    )
+    marker_node = Node(
+        package="teleoperation",
+        executable="marker",
+        name="marker",
         output="screen",
     )
 
@@ -66,9 +71,8 @@ def generate_launch_description():
     return LaunchDescription([
 
         rviz_node,
-
         robot_state_publisher_node,
-
         sim_node,
+        marker_node,
 
     ])

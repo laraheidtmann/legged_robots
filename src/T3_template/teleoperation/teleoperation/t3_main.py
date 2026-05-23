@@ -48,9 +48,6 @@ class Talos(Robot):
             # Initialization position including floating base
             q_home = np.hstack([np.array([0, 0, z_init, 0, 0, 0, 1]), q_actuated_home])
 
-             
-            
-        
             self._wrapper = pin.RobotWrapper.BuildFromURDF(urdf,                        # Model description
                                                 path_meshes,                 # Model geometry descriptors 
                                                 None,   # Floating base model. Use "None" if fixed
@@ -66,8 +63,15 @@ class Talos(Robot):
             self.node=rclpy.create_node("teleoperator")
             self.joint_state_publisher=self.node.create_publisher(JointState,"joint_states",10)
             self.tf_broadcaster=TransformBroadcaster(self.node)
+
+            self.marker_listener=self.node.create_subscription(PoseStamped,'marker_pose',self.marker_callback,10)
+            self.X_Goal=None
             #TODO: Create RobotWrapper (fixed base), Call base class constructor, make publisher  
             #None
+    def marker_callback(self,msg):
+        p=msg.pose.position
+        q=msg.pose.orientation
+        self.X_Goal=pin.XYZQUATToSE3([p.x,p.y,p.z,q.x,q.y,q.z,q.w])
         
     def update(self):
         # TODO: update base class, update pinocchio robot wrapper's kinematics
@@ -234,7 +238,8 @@ class CartesianSpaceController:
         M = (M + M.T) / 2.0
         h = pin.rnea(model, data, q, v, np.zeros(model.nv))
 
-        return M @ q_ddot_des + h
+        N=np.eye(model.nv) -J.T @ J_pinv.T
+        return M @ q_ddot_des + h, N
             
             
   ##############################################################################
@@ -299,49 +304,28 @@ class JointSpline:
 
     def __init__(self, q_init, q_goal, duration):
 
-
         self.duration = duration
 
-
         # start/end times
-
         t_points = [0.0, duration]
 
-
         # shape: (2, 32)
-
         q_points = np.vstack([q_init, q_goal])
 
-
         # zero start/end velocity
-
         self.spline = CubicSpline(
-
             t_points,
-
             q_points,
-
             axis=0,
-
             bc_type=((1, np.zeros(len(q_init))),
-
                      (1, np.zeros(len(q_goal))))
-
         )
 
-
     def evaluate(self, t):
-
-
         t = np.clip(t, 0.0, self.duration)
-
-
         q = self.spline(t)
-
         q_dot = self.spline(t, 1)
-
         q_ddot = self.spline(t, 2)
-
 
         return q, q_dot, q_ddot
 
@@ -398,7 +382,9 @@ def main():
     # TODO: Keep looping while ros is running 
     while rclpy.ok():
         robot.update()
+        rclpy.spin_once(robot.node,timeout_sec=0)
         robot.publish()
+
 
         t = env.simulator.simTime()
         dt = env.simulator.stepTime()
@@ -411,12 +397,16 @@ def main():
         if t<5:
             tau=joint_space_controller.update(q_r,q_r_dot,q_r_ddot)
             #robot.update()
-            X_Goal=robot.data().oMi[robot.wrapper().model.getJointId("arm_right_7_joint")].copy()
+            robot.X_Goal=robot.data().oMi[robot.wrapper().model.getJointId("arm_right_7_joint")].copy()
         else:
-            X_r=X_Goal          
+            X_r=robot.X_Goal          
             X_dot_r=np.zeros(6)
             X_ddot_r=np.zeros(6)
-            tau=cartesian_space_controller.update(X_r,X_dot_r,X_ddot_r)
+            tau_posture=joint_space_controller.update(q_r,q_r_dot,q_r_ddot)
+        
+            tau_cart,N=cartesian_space_controller.update(X_r,X_dot_r,X_ddot_r)
+            tau=tau_cart + N @ tau_posture
+
 
 
         robot.setActuatedJointTorques(tau)
