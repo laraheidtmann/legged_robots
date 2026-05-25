@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'ros_visuals'
+package_name = 'teleoperation'
 
 setup(
     name=package_name,
@@ -10,22 +10,25 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/'+package_name+ '/launch/',['launch/talos_rviz.launch.py']),
+        ('share/'+package_name+ '/launch/',['launch/t3_talos_rviz.launch.py']),
+
     ],
+    package_data={'': ['py.typed']},
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='devel',
-    maintainer_email='devel@todo.todo',
+    maintainer='laraheidtmann',
+    maintainer_email='ge78puq@mytum.de',
     description='TODO: Package description',
     license='TODO: License declaration',
-    tests_require=['pytest'],
+    extras_require={
+        'test': [
+            'pytest',
+        ],
+    },
     entry_points={
         'console_scripts': [
-            'pub = ros_visuals.publisher_node:main',
-            'sub = ros_visuals.subscriber_node:main',
-            'coordinate_pub = ros_visuals.t11:main',
-            't12= ros_visuals.t12:main',
-            
+            't3=teleoperation.t3_main:main',
+            'marker=teleoperation.tele_robot:main',
         ],
     },
 )

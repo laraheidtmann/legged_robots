@@ -8,11 +8,10 @@ import os
 def generate_launch_description():
     package_name = "ros_visuals"
 
-    rviz_config = os.path.join(
-        get_package_share_directory(package_name),
-        "rviz",
-        "cage_visualization.rviz",
-    )
+    rviz_config= "/home/ubuntu/Documents/legged_robots/rviz_config/cage.rviz"
+
+
+
 
     rviz_node = Node(
         package="rviz2",

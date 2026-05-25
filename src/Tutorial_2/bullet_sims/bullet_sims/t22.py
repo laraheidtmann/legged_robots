@@ -9,8 +9,8 @@ import pinocchio as pin
 #path_meshes = "src/reemc_description/meshes/../.."
 
 # For Talos robot
-urdf = "src/talos_description/robots/talos_reduced.urdf"
-path_meshes = "src/talos_description/meshes/../.."
+urdf = "src/Tutorial_2/talos_description/robots/talos_reduced.urdf"
+path_meshes = "src/Tutorial_2/talos_description/meshes/../.."
 
 '''
 Talos
@@ -40,6 +40,7 @@ q_actuated_home[22:30] = np.array([0, 0, 0, 0, 0, 0, 0, 0 ])
 
 # Initialization position including floating base
 q_home = np.hstack([np.array([0, 0, z_init, 0, 0, 0, 1]), q_actuated_home])
+
 
 # setup the task stack
 modelWrap = pin.RobotWrapper.BuildFromURDF(urdf,                        # Model description
@@ -90,7 +91,7 @@ pb.resetDebugVisualizerCamera(
 tau = q_actuated_home*0
 
 #####TODO: implement joint space PD Controller
-n_joints=model.nv -6  #probably 32
+n_joints=model.nv -6  # 32
 qd=np.zeros(n_joints)
 
 Kp_diag= np.ones(n_joints) *10.0
@@ -109,6 +110,33 @@ Kd=np.diag(Kd_diag)
 
 #####
 
+def spline_joint_positions(q_ini,q_home,t,T):
+    if t>=T:
+        return q_home.copy()
+    #normalize time
+    s=t/T
+    alpha=3.0 * s**2 -2.0 * s**3
+
+    return pin.interpolate(model,q_ini,q_home,alpha)
+
+T_spline=2.0
+t_sim=0.0
+dt=1.0/1000
+q_ini=robot.q().copy()
+
+#new q_home:
+#TODO: new home position:
+a=7
+q_home[a:a+6]= np.array([0,0,-0.44,0.9,-0.45,0]) #left leg
+q_home[a+6:a+12]= np.array([0,0,-0.44,0.9,-0.45,0]) #right leg
+
+q_home[a+14:a+22]= np.array([0,-0.24, 0, -1, 0,0,0,0])
+q_home[a+22:a+30]= np.array([0,-0.24, 0, -1, 0,0,0,0])
+
+
+
+
+
 done = False
 while not done:
     # update the simulator and the robot
@@ -121,6 +149,11 @@ while not done:
 
     q=q_full[7:]
     v=v_full[6:]
+
+    q_desired_full=spline_joint_positions(q_ini,q_home,t_sim,T_spline)
+    t_sim+=dt
+    qd=q_desired_full[7:]
+
 
     tau=Kp @(qd-q) - Kd @ v
     

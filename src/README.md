@@ -1,29 +1,68 @@
 
 # Legged Robots Tutorials (TUM) — Block 1 Deliverable
 
-
-
-## Prerequisites
-
-
-
-- ROS 2 (Humble or later)
-
-- PyBullet
-
-- Pinocchio
-
-- `talos_description` package
-
-- `simulator` package
-
-- `bullet_sims` package
-
-- `teleoperation` package
+## Tutorial 1: ROS visualizations and spacial algebra
 
 
 
----
+
+
+
+### How to Run
+
+
+
+**1. Build the workspace:**
+
+
+
+```bash
+
+cd ~/your_ws
+
+colcon build
+
+source install/setup.bash
+
+```
+
+
+
+**2. Run one of the scripts:**
+
+
+
+| Script | Description |
+
+|--------|-------------|
+
+| `t11` | Exercise 1: Builds a cage using pinocchio SE(3) transformations, rotates and translates it and creates two point vectors in world and w.r.t one of the corners|
+
+| `t12` | Exercise 2: Joint space PD controller — holds zero position |
+
+
+```bash
+ros2 run ros_visuals t11
+
+#or
+
+ros2 run ros_visuals t12
+
+
+```
+
+**3. For RViz visualization, launch this launch file:**
+
+
+
+```bash
+
+ros2 launch ros_visuals cage_rviz.launch.py
+
+```
+
+
+
 
 
 
@@ -63,15 +102,20 @@ source install/setup.bash
 
 |--------|-------------|
 
-| `t21` | Joint space PD controller — holds zero position |
+| `t2_temp` | Exercise 1: No torque signals – Robot falls down  – Complete Inertia Matrix and Non linear effects are printed out|
 
-| `t22` | Home posture controller — splines to stable home pose |
+| `t21` | Exercise 2: Joint space PD controller — holds zero position |
 
-| `t23` | Home posture + ROS 2 joint state publishing + RViz |
+| `t22` | Exercise 3: Home posture controller — splines to stable home pose |
+
+| `t23 and talos_rviz.launch.py` | Exercise 4: Home posture + ROS 2 joint state publishing + RViz |
 
 
 
 ```bash
+ros2 run bullet_sims t2_temp
+
+#or
 
 ros2 run bullet_sims t21
 
@@ -83,6 +127,8 @@ ros2 run bullet_sims t22
 
 ros2 run bullet_sims t23
 
+
+
 ```
 
 
@@ -92,8 +138,6 @@ ros2 run bullet_sims t23
 
 
 ```bash
-
-source install/setup.bash
 
 ros2 launch ros_visuals talos_rviz.launch.py
 
@@ -105,7 +149,7 @@ ros2 launch ros_visuals talos_rviz.launch.py
 
 
 
-**t21:** The robot starts at zero configuration. The PD controller applies torques to resist gravity. Tune `Kp`/`Kd` so the robot holds a stiff upright posture — leg gains should be roughly 3x higher than upper body gains.
+**t21:** The robot starts at zero configuration. The PD controller applies torques to resist gravity. 
 
 
 
@@ -113,7 +157,10 @@ ros2 launch ros_visuals talos_rviz.launch.py
 
 
 
-**t23:** Same as t22, but also publishes `/joint_states` at 30 Hz for RViz visualization. Load the RobotModel and TF plugins in RViz to see the robot moving.
+**t23:** Same as t22, but also publishes `/joint_states` at 30 Hz for RViz visualization. 
+
+
+**talos_rviz.launch.py:** Launches RViz as well
 
 
 
@@ -133,7 +180,7 @@ Implements inverse dynamics control in joint space and Cartesian space for the T
 
 
 
-**1. Build the workspace:**
+**1. Build (if not done already) the workspace:**
 
 
 
@@ -155,7 +202,7 @@ source install/setup.bash
 
 ```bash
 
-ros2 launch teleoperation talos_rviz_launch.py
+ros2 launch teleoperation t3_talos_rviz.launch.py
 
 ```
 
@@ -207,7 +254,6 @@ Gains are set in `t3.py` in the `main()` function:
 
 
 
-A good rule of thumb for stable behavior: `Kd = 2 * sqrt(Kp)` (critically damped).
 
 
 

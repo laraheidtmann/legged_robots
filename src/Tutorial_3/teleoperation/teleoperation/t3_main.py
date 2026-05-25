@@ -36,8 +36,8 @@ class Talos(Robot):
 
     def __init__(self, simulator, q=None, verbose=True, useFixedBase=True):
            
-            urdf = "src/talos_description/robots/talos_reduced.urdf"
-            path_meshes = "src/talos_description/meshes/../.."
+            urdf = "src/Tutorial_2/talos_description/robots/talos_reduced.urdf"
+            path_meshes = "src/Tutorial_2/talos_description/meshes/../.."
             z_init = 1.15
             q_actuated_home = np.zeros(32)
             q_actuated_home[:6] = np.array([0, 0, 0, 0, 0, 0])

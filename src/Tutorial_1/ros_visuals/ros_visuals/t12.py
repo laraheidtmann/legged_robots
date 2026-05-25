@@ -34,9 +34,9 @@ class PinocchioCageNode(Node):
         self.point_pub=self.create_publisher(Marker,"point_marker",10) #world frame
         self.point_pub_1=self.create_publisher(Marker,"point_marker_1",10) # cage frame
 
-        self.corner_twist_pub = self.create_publisher(TwistStamped, "corner_twist", 10)
-        self.world_twist_pub = self.create_publisher(TwistStamped, "world_twist", 10)
-        self.pin_world_twist_pub = self.create_publisher(TwistStamped, "pin_world_twist", 10)
+        self.corner_twist_pub = self.create_publisher(TwistStamped, "corner_twist", 10)  #cage frame (w.r.t one of the corners)
+        self.world_twist_pub = self.create_publisher(TwistStamped, "world_twist", 10) #world frame 
+        self.pin_world_twist_pub = self.create_publisher(TwistStamped, "pin_world_twist", 10) #world frame computed with pinocchio
 
         self.other_corner_twist_pub = self.create_publisher(TwistStamped, "other_corner_twist", 10)
         self.pin_other_corner_twist_pub = self.create_publisher(TwistStamped, "pin_other_corner_twist", 10)

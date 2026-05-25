@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'teleoperation'
+package_name = 'ros_visuals'
 
 setup(
     name=package_name,
@@ -11,24 +11,21 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/'+package_name+ '/launch/',['launch/talos_rviz.launch.py']),
-
+        ('share/'+package_name+ '/launch/',['launch/cage_rviz.launch.py']),
     ],
-    package_data={'': ['py.typed']},
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='laraheidtmann',
-    maintainer_email='ge78puq@mytum.de',
+    maintainer='devel',
+    maintainer_email='devel@todo.todo',
     description='TODO: Package description',
     license='TODO: License declaration',
-    extras_require={
-        'test': [
-            'pytest',
-        ],
-    },
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            't3=teleoperation.t3_main:main',
-            'marker=teleoperation.tele_robot:main',
+            't11 = ros_visuals.t11:main',
+            't12= ros_visuals.t12:main',
+            't13= ros_visuals.t13:main',     
+            
         ],
     },
 )

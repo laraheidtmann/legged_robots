@@ -15,8 +15,8 @@ def generate_launch_description():
     package_name = "ros_visuals"
 
 
-    urdf_path = os.path.abspath("src/talos_description/robots/talos_reduced.urdf")
-    path_meshes = "src/talos_description/meshes/../.."
+    urdf_path = os.path.abspath("src/Tutorial_2/talos_description/robots/talos_reduced.urdf")
+    path_meshes = "src/Tutorial_2/talos_description/meshes/../.."
     rviz_config= "/home/ubuntu/Documents/legged_robots/rviz_config/talos_tele_controlled.rviz"
 
 
