@@ -8,11 +8,7 @@ Panels:
         - /Status1
         - /Marker1
         - /Marker2
-        - /TwistStamped1
-        - /TwistStamped2
-        - /TwistStamped3
-        - /TwistStamped5
-        - /TwistStamped6
+        - /Wrench3
       Splitter Ratio: 0.5
     Tree Height: 413
   - Class: rviz_common/Selection
@@ -110,9 +106,7 @@ Visualization Manager:
     - Class: rviz_default_plugins/Marker
       Enabled: true
       Name: Marker
-      Namespaces:
-        Value: true
-        point_marker: true
+      Namespaces: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -124,9 +118,7 @@ Visualization Manager:
     - Class: rviz_default_plugins/Marker
       Enabled: true
       Name: Marker
-      Namespaces:
-        Value: true
-        point_marker_1: true
+      Namespaces: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -152,7 +144,7 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /world_twist
+        Value: /twists/input_twist_at_vertex_0
       Value: true
     - Alpha: 1
       Angular Arrow Scale: 2
@@ -171,49 +163,11 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /corner_twist
+        Value: /twists/vertex_0_twist_to_world_manual
       Value: true
     - Alpha: 1
       Angular Arrow Scale: 2
-      Angular Color: 204; 204; 51
-      Arrow Width: 0.5
-      Class: rviz_default_plugins/TwistStamped
-      Enabled: true
-      Hide Small Values: true
-      History Length: 1
-      Linear Arrow Scale: 2
-      Linear Color: 204; 51; 51
-      Name: TwistStamped
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /other_corner_twist
-      Value: true
-    - Alpha: 1
-      Angular Arrow Scale: 2
-      Angular Color: 204; 204; 51
-      Arrow Width: 0.5
-      Class: rviz_default_plugins/TwistStamped
-      Enabled: false
-      Hide Small Values: true
-      History Length: 1
-      Linear Arrow Scale: 2
-      Linear Color: 204; 51; 51
-      Name: TwistStamped
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /pin_other_corner_twist
-      Value: false
-    - Alpha: 1
-      Angular Arrow Scale: 2
-      Angular Color: 192; 97; 203
+      Angular Color: 220; 138; 221
       Arrow Width: 0.5
       Class: rviz_default_plugins/TwistStamped
       Enabled: true
@@ -228,11 +182,30 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /pin_other_corner_twist
+        Value: /twists/vertex_0_twist_to_world_pinocchio
       Value: true
     - Alpha: 1
       Angular Arrow Scale: 2
-      Angular Color: 192; 97; 203
+      Angular Color: 204; 204; 51
+      Arrow Width: 0.5
+      Class: rviz_default_plugins/TwistStamped
+      Enabled: true
+      Hide Small Values: true
+      History Length: 1
+      Linear Arrow Scale: 2
+      Linear Color: 204; 51; 51
+      Name: TwistStamped
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /twists/world_twist_to_vertex_6_manual
+      Value: true
+    - Alpha: 1
+      Angular Arrow Scale: 2
+      Angular Color: 220; 138; 221
       Arrow Width: 0.5
       Class: rviz_default_plugins/TwistStamped
       Enabled: true
@@ -247,7 +220,121 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /pin_world_twist
+        Value: /twists/world_twist_to_vertex_6_pinocchio
+      Value: true
+    - Accept NaN Values: false
+      Alpha: 1
+      Arrow Width: 0.5
+      Class: rviz_default_plugins/Wrench
+      Enabled: true
+      Force Arrow Scale: 2
+      Force Color: 204; 51; 51
+      History Length: 1
+      Name: Wrench
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /wrenches/corner_0_original
+      Torque Arrow Scale: 2
+      Torque Color: 204; 204; 51
+      Value: true
+    - Accept NaN Values: false
+      Alpha: 1
+      Arrow Width: 0.5
+      Class: rviz_default_plugins/Wrench
+      Enabled: true
+      Force Arrow Scale: 2
+      Force Color: 204; 51; 51
+      History Length: 1
+      Name: Wrench
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /wrenches/corner_0_to_world_manual
+      Torque Arrow Scale: 2
+      Torque Color: 204; 204; 51
+      Value: true
+    - Accept NaN Values: false
+      Alpha: 1
+      Arrow Width: 0.5
+      Class: rviz_default_plugins/Wrench
+      Enabled: true
+      Force Arrow Scale: 2
+      Force Color: 204; 51; 51
+      History Length: 1
+      Name: Wrench
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /wrenches/corner_0_to_world_pinocchio
+      Torque Arrow Scale: 2
+      Torque Color: 204; 204; 51
+      Value: true
+    - Accept NaN Values: false
+      Alpha: 1
+      Arrow Width: 0.5
+      Class: rviz_default_plugins/Wrench
+      Enabled: true
+      Force Arrow Scale: 2
+      Force Color: 204; 51; 51
+      History Length: 1
+      Name: Wrench
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /wrenches/world_original
+      Torque Arrow Scale: 2
+      Torque Color: 204; 204; 51
+      Value: true
+    - Accept NaN Values: false
+      Alpha: 1
+      Arrow Width: 0.5
+      Class: rviz_default_plugins/Wrench
+      Enabled: true
+      Force Arrow Scale: 2
+      Force Color: 204; 51; 51
+      History Length: 1
+      Name: Wrench
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /wrenches/world_to_corner_6_manual
+      Torque Arrow Scale: 2
+      Torque Color: 204; 204; 51
+      Value: true
+    - Accept NaN Values: false
+      Alpha: 1
+      Arrow Width: 0.5
+      Class: rviz_default_plugins/Wrench
+      Enabled: true
+      Force Arrow Scale: 2
+      Force Color: 204; 51; 51
+      History Length: 1
+      Name: Wrench
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /wrenches/world_to_corner_6_pinocchio
+      Torque Arrow Scale: 2
+      Torque Color: 204; 204; 51
       Value: true
   Enabled: true
   Global Options:
@@ -295,7 +382,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 8.022947311401367
+      Distance: 15.161568641662598
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -310,10 +397,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.6403981447219849
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 0.10039831697940826
     Saved: ~
 Window Geometry:
   Displays:

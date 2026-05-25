@@ -1,6 +1,36 @@
-Exercise 1.3:
+
+Question 1.3:
+If red is the x-axis, green is the y-axis, and blue is the z-axis, are all the frames correct?
+
 wrong frames: o3, o5
 --> they both dont follow the right hand conventions
 
-Exercise 1.10:
-they are exactly the same orientation for me
+1.7
+A point is first rotated and then translated:
+
+p_world = R * p_local + t
+
+For world-frame velocities:
+
+T_new = dT * T_old
+
+1.10
+The two markers should have the same position. If cubes are used, their orientations can differ because one cube is expressed in the local vertex frame and the other in the world frame.
+
+
+Exercise 2
+
+2.6 / 2.7
+The manual twist transformation and the Pinocchio transformation should give the same result, except for small numerical differences.
+
+2.8
+The angular velocity component aligned with the rotation axis stays constant in the world frame because the cage rotates with constant angular velocity.
+
+
+Exercise 3
+
+3.6 / 3.7
+The manual wrench transformation and the Pinocchio transformation should match.
+
+3.8
+The wrench components stay constant in the frame where the wrench is originally defined. After transforming into a rotating frame, the components generally change over time.

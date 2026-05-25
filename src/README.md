@@ -38,7 +38,9 @@ source install/setup.bash
 
 | `t11` | Exercise 1: Builds a cage using pinocchio SE(3) transformations, rotates and translates it and creates two point vectors in world and w.r.t one of the corners|
 
-| `t12` | Exercise 2: Joint space PD controller — holds zero position |
+| `t12` | Exercise 2: Twist: publishes Twist w.r.t one of the corners, transformed to world coordinates, and the other way around as well|
+
+| `t13` | Exercise 3: Wrench|
 
 
 ```bash
@@ -47,6 +49,10 @@ ros2 run ros_visuals t11
 #or
 
 ros2 run ros_visuals t12
+
+#or 
+
+ros2 run ros_visuals t13
 
 
 ```
