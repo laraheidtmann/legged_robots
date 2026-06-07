@@ -3,6 +3,7 @@ from numpy import nan
 from numpy.linalg import norm as norm
 import matplotlib.pyplot as plt
 
+
 # pinocchio
 import pinocchio as pin
 
@@ -21,6 +22,11 @@ from rclpy.node import Node
 import tf2_ros
 from sensor_msgs.msg import JointState
 from geometry_msgs.msg import PoseStamped
+from tf2_ros import TransformBroadcaster
+from geometry_msgs.msg import TransformStamped
+
+from scipy.spatial.transform import Rotation as R
+
 
 ################################################################################
 # settings
@@ -39,8 +45,7 @@ class Talos(Robot):
 
 
         super().__init__(simulator,urdf,model, [0, 0, z_init],       # Floating base initial position
-        [0,0,0,1] ,q=q ,useFixedBase=useFixedBase)
-
+              [0,0,0,1] ,q=q ,useFixedBase=useFixedBase)
         self.joint_state_publisher=self.node.create_publisher(JointState,"joint_states",10)
         self.tf_broadcaster=TransformBroadcaster(self.node)
 
@@ -66,7 +71,7 @@ class Talos(Robot):
 
         tf_msg = TransformStamped()
 
-        tf_msg.header.stamp = self.get_clock().now().to_msg()
+        tf_msg.header.stamp = self.node.get_clock().now().to_msg()
         tf_msg.header.frame_id = "world"
         tf_msg.child_frame_id = "base_link"  
 
@@ -95,12 +100,13 @@ class Talos(Robot):
 ################################################################################
 
 def main(): 
+    rclpy.init()
     node = rclpy.create_node('tutorial_4_standing_node')
     tsid_wrapper=TSIDWrapper(conf)
-    simulator=PybulletWrapper()
+    simulator=PybulletWrapper(sim_rate=1000)
     q_home=conf.q_home
     model=tsid_wrapper.model
-    urdf="src/Tutorial_4/tutorial_4/talos_urdf/talos_reduced_no_hands.urdf"
+    urdf= "src/Tutorial_2/talos_description/robots/talos_reduced_no_hands.urdf"
     ROBOT=Talos(node=node,simulator=simulator,urdf=urdf,model=model,q=q_home,useFixedBase=False)
         
 
@@ -116,7 +122,8 @@ def main():
         t = simulator.simTime()
 
         # TODO: update the simulator and the robot
-        simulator.update()
+        simulator.step()
+        simulator.debug()
         ROBOT.update()
         rclpy.spin_once(node,timeout_sec=0)
         q=ROBOT.q()
@@ -138,6 +145,5 @@ def main():
             # TODO: publish current state
     
 if __name__ == '__main__': 
-    rclpy.init()
     main()
     
