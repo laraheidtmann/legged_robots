@@ -8,7 +8,7 @@ set -e
 
 
 
-WORKSPACE="/home/ubuntu/Documents/legged_robots"
+WORKSPACE="/home/ubuntu/legged_robots"
 
 
 
@@ -182,7 +182,7 @@ echo "Adding venv site-packages to PYTHONPATH in ~/.bashrc..."
 
 
 
-echo 'export PYTHONPATH=/home/ubuntu/Documents/legged_robots/venv/lib/python3.12/site-packages:$PYTHONPATH' >> ~/.bashrc
+echo 'export PYTHONPATH=/home/ubuntu/legged_robots/venv/lib/python3.12/site-packages:$PYTHONPATH' >> ~/.bashrc
 
 
 
