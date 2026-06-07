@@ -26,6 +26,7 @@ setup(
     entry_points={
         'console_scripts': [
             'standing_01=tutorial_4.01_standing:main',
+            'one_leg_stand_02=tutorial_4.02_one_leg_stand:main',
         ],
     },
 )

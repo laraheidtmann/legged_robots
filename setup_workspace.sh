@@ -84,7 +84,7 @@ sudo apt update
 
 
 
-sudo apt install -y ros-rolling-xacro ros-rolling-urdf ros-rolling-pinocchio liburdfdom-dev liburdfdom-tools liburdfdom-sensor4.0 liburdfdom-model-state4.0
+sudo apt install -y ros-rolling-xacro ros-rolling-urdf ros-rolling-pinocchio liburdfdom-dev liburdfdom-tools liburdfdom-sensor4.0 liburdfdom-model-state4.0 ros-rolling-tsid
 
 
 

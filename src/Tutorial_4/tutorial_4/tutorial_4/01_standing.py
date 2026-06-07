@@ -106,13 +106,11 @@ def main():
     simulator=PybulletWrapper(sim_rate=1000)
     q_home=conf.q_home
     model=tsid_wrapper.model
-    urdf= "src/Tutorial_2/talos_description/robots/talos_reduced_no_hands.urdf"
+    urdf= conf.urdf
+    #"src/Tutorial_2/talos_description/robots/talos_reduced_no_hands.urdf"
     ROBOT=Talos(node=node,simulator=simulator,urdf=urdf,model=model,q=q_home,useFixedBase=False)
         
 
-    # TODO init TSIDWrapper
-    # TODO init Simulator
-    # TODO init ROBOT
     
     t_publish = 0.0
 
@@ -121,7 +119,6 @@ def main():
         # elaped time
         t = simulator.simTime()
 
-        # TODO: update the simulator and the robot
         simulator.step()
         simulator.debug()
         ROBOT.update()
@@ -129,12 +126,15 @@ def main():
         q=ROBOT.q()
         v=ROBOT.v()
         
-        # TODO: update TSID controller
         tau_sol,dv_sol= tsid_wrapper.update(q,v,t)
 
 
 
         # TODO: command to the robot
+        ROBOT.setActuatedJointTorques(tau_sol)
+
+
+
 
         # publish to ros
         if t - t_publish > 1./30.:
