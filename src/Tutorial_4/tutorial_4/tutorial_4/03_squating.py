@@ -154,6 +154,7 @@ def main():
     log_com_vel_pybullet = []
     log_com_acc_ref = []
     log_com_acc_tsid = []
+    plotted=False
     try:
     
         while rclpy.ok():
@@ -249,51 +250,52 @@ def main():
             log_com_acc_ref.append(a_com_ref)
             log_com_acc_tsid.append(a_com_tsid)
 
-            # if t>15:
-            #     if DO_PLOT:
-            #         log_t          = np.array(log_t)
-            #         log_com_ref    = np.array(log_com_ref)
-            #         log_com_tsid   = np.array(log_com_tsid)
-            #         log_com_pb     = np.array(log_com_pybullet)
-            #         log_vel_ref    = np.array(log_com_vel_ref)
-            #         log_vel_tsid   = np.array(log_com_vel_tsid)
-            #         log_vel_pb     = np.array(log_com_vel_pybullet)
-            #         log_acc_ref    = np.array(log_com_acc_ref)
-            #         log_acc_tsid   = np.array(log_com_acc_tsid)
+            if t>15:
+                if DO_PLOT and plotted==False:
+                    plotted=True
+                    log_t_np          = np.array(log_t)
+                    log_com_ref_np    = np.array(log_com_ref)
+                    log_com_tsid_np   = np.array(log_com_tsid)
+                    log_com_pb_np     = np.array(log_com_pybullet)
+                    log_vel_ref_np    = np.array(log_com_vel_ref)
+                    log_vel_tsid_np   = np.array(log_com_vel_tsid)
+                    log_vel_pb_np     = np.array(log_com_vel_pybullet)
+                    log_acc_ref_np    = np.array(log_com_acc_ref)
+                    log_acc_tsid_np   = np.array(log_com_acc_tsid)
                 
-            #         labels = ['X', 'Y', 'Z']
-            #         fig, axes = plt.subplots(3, 3, figsize=(15, 10))
-            #         fig.suptitle('COM Position, Velocity, Acceleration')
+                    labels = ['X', 'Y', 'Z']
+                    fig, axes = plt.subplots(3, 3, figsize=(15, 10))
+                    fig.suptitle('COM Position, Velocity, Acceleration')
 
-            #         for i in range(3):
-            #             # Position
-            #             axes[0, i].plot(log_t, log_com_ref[:, i],  '--', label='Ref')
-            #             axes[0, i].plot(log_t, log_com_tsid[:, i],       label='TSID')
-            #             axes[0, i].plot(log_t, log_com_pb[:, i],         label='PyBullet')
-            #             axes[0, i].set_title(f'COM Pos {labels[i]}')
-            #             axes[0, i].set_ylabel('[m]')
-            #             axes[0, i].legend()
-            #             axes[0, i].grid(True)
+                    for i in range(3):
+                        # Position
+                        axes[0, i].plot(log_t, log_com_ref_np[:, i],  '--', label='Ref')
+                        axes[0, i].plot(log_t, log_com_tsid_np[:, i],       label='TSID')
+                        axes[0, i].plot(log_t, log_com_pb_np[:, i],         label='PyBullet')
+                        axes[0, i].set_title(f'COM Pos {labels[i]}')
+                        axes[0, i].set_ylabel('[m]')
+                        axes[0, i].legend()
+                        axes[0, i].grid(True)
 
-            #             # Velocity
-            #             axes[1, i].plot(log_t, log_vel_ref[:, i],  '--', label='Ref')
-            #             axes[1, i].plot(log_t, log_vel_tsid[:, i],       label='TSID')
-            #             axes[1, i].plot(log_t, log_vel_pb[:, i],         label='PyBullet')
-            #             axes[1, i].set_title(f'COM Vel {labels[i]}')
-            #             axes[1, i].set_ylabel('[m/s]')
-            #             axes[1, i].legend()
-            #             axes[1, i].grid(True)
+                        # Velocity
+                        axes[1, i].plot(log_t, log_vel_ref_np[:, i],  '--', label='Ref')
+                        axes[1, i].plot(log_t, log_vel_tsid_np[:, i],       label='TSID')
+                        axes[1, i].plot(log_t, log_vel_pb_np[:, i],         label='PyBullet')
+                        axes[1, i].set_title(f'COM Vel {labels[i]}')
+                        axes[1, i].set_ylabel('[m/s]')
+                        axes[1, i].legend()
+                        axes[1, i].grid(True)
 
-            #             # Acceleration
-            #             axes[2, i].plot(log_t, log_acc_ref[:, i],  '--', label='Ref')
-            #             axes[2, i].plot(log_t, log_acc_tsid[:, i],       label='TSID')
-            #             axes[2, i].set_title(f'COM Acc {labels[i]}')
-            #             axes[2, i].set_ylabel('[m/s²]')
-            #             axes[2, i].legend()
-            #             axes[2, i].grid(True)
+                        # Acceleration
+                        axes[2, i].plot(log_t, log_acc_ref_np[:, i],  '--', label='Ref')
+                        axes[2, i].plot(log_t, log_acc_tsid_np[:, i],       label='TSID')
+                        axes[2, i].set_title(f'COM Acc {labels[i]}')
+                        axes[2, i].set_ylabel('[m/s²]')
+                        axes[2, i].legend()
+                        axes[2, i].grid(True)
 
-            #         plt.tight_layout()
-            #         plt.show() 
+                    plt.tight_layout()
+                    plt.show() 
 
 
 
@@ -315,50 +317,6 @@ def main():
         import traceback
         traceback.print_exc()
     finally:
-        if DO_PLOT:
-            log_t          = np.array(log_t)
-            log_com_ref    = np.array(log_com_ref)
-            log_com_tsid   = np.array(log_com_tsid)
-            log_com_pb     = np.array(log_com_pybullet)
-            log_vel_ref    = np.array(log_com_vel_ref)
-            log_vel_tsid   = np.array(log_com_vel_tsid)
-            log_vel_pb     = np.array(log_com_vel_pybullet)
-            log_acc_ref    = np.array(log_com_acc_ref)
-            log_acc_tsid   = np.array(log_com_acc_tsid)
-        
-            labels = ['X', 'Y', 'Z']
-            fig, axes = plt.subplots(3, 3, figsize=(15, 10))
-            fig.suptitle('COM Position, Velocity, Acceleration')
-
-            for i in range(3):
-                # Position
-                axes[0, i].plot(log_t, log_com_ref[:, i],  '--', label='Ref')
-                axes[0, i].plot(log_t, log_com_tsid[:, i],       label='TSID')
-                axes[0, i].plot(log_t, log_com_pb[:, i],         label='PyBullet')
-                axes[0, i].set_title(f'COM Pos {labels[i]}')
-                axes[0, i].set_ylabel('[m]')
-                axes[0, i].legend()
-                axes[0, i].grid(True)
-
-                # Velocity
-                axes[1, i].plot(log_t, log_vel_ref[:, i],  '--', label='Ref')
-                axes[1, i].plot(log_t, log_vel_tsid[:, i],       label='TSID')
-                axes[1, i].plot(log_t, log_vel_pb[:, i],         label='PyBullet')
-                axes[1, i].set_title(f'COM Vel {labels[i]}')
-                axes[1, i].set_ylabel('[m/s]')
-                axes[1, i].legend()
-                axes[1, i].grid(True)
-
-                # Acceleration
-                axes[2, i].plot(log_t, log_acc_ref[:, i],  '--', label='Ref')
-                axes[2, i].plot(log_t, log_acc_tsid[:, i],       label='TSID')
-                axes[2, i].set_title(f'COM Acc {labels[i]}')
-                axes[2, i].set_ylabel('[m/s²]')
-                axes[2, i].legend()
-                axes[2, i].grid(True)
-
-            plt.tight_layout()
-            plt.show() 
         rclpy.shutdown() 
           
 
