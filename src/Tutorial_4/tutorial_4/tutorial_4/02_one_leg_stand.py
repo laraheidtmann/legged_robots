@@ -52,8 +52,8 @@ class Talos(Robot):
         pass
 
     def update(self):
-        # TODO update base class
-        pass
+        super().update()
+        
     
     def publish(self,T_frame_w):
         msg = JointState()
@@ -104,7 +104,6 @@ def main():
     q_home=conf.q_home
     model=tsid_wrapper.model
     urdf= conf.urdf
-    #"src/Tutorial_2/talos_description/robots/talos_reduced_no_hands.urdf"
     ROBOT=Talos(node=node,simulator=simulator,urdf=urdf,model=model,q=q_home,useFixedBase=False)
         
     # Get current COM state (to preserve the Z height)
@@ -123,19 +122,30 @@ def main():
     tsid_wrapper.setComRefState(p_com)
         
     t_publish = 0.0
+    time_elapsed=False
+    z_LF=0.3
 
     while rclpy.ok():
 
         # elaped time
         t = simulator.simTime()
 
-        # TODO: update the simulator and the robot
         simulator.step()
         simulator.debug()
         ROBOT.update()
         rclpy.spin_once(node,timeout_sec=0)
         q=ROBOT.q()
         v=ROBOT.v()
+        if t>2 and time_elapsed==False:
+            print("Moving foot to z: ",z_LF)
+            time_elapsed=True
+            tsid_wrapper.remove_contact_LF()
+            pose=T_rf
+            pose.translation[2]=z_LF
+            tsid_wrapper.set_LF_pose_ref(pose)
+
+
+
         
         # TODO: update TSID controller
         tau_sol,dv_sol= tsid_wrapper.update(q,v,t)

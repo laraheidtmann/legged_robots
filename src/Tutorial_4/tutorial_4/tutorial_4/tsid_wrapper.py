@@ -283,20 +283,47 @@ class TSIDWrapper:
         self.rightFootTask.setReference(self.rf_ref)
         
         '''
-        SE3 task for left hand pose
-        '''
-        # TODO: ADD a tsid.TaskSE3Equality for the left hand
-        # self.LH = # the frame id
-        # self.leftHandTask = # the motion task
-        # self.lh_ref = # the TrajectorySample (see: create_sample(...))
-
-        '''
         SE3 task for right hand pose
         '''
         # TODO: ADD a tsid.TaskSE3Equality for the right hand
-        # self.RH = # the frame id
-        # self.rightHandTask = # the motion task
-        # self.rh_ref = # the TrajectorySample (see: create_sample(...))
+        self.RH = robot.model().getFrameId(conf.rh_frame_name)
+        H_rh_ref = robot.framePosition(data, self.RH)
+
+
+        self.rightHandTask = tsid.TaskSE3Equality(
+            "task-right-hand", self.robot, self.conf.rh_frame_name)
+        self.rightHandTask.setKp(
+            self.conf.kp_hand * np.array([1, 1, 1, 1, 1, 3]))
+        self.rightHandTask.setKd(
+            2.0 * np.sqrt(self.conf.kp_hand) * np.array([1, 1, 1, 1, 1, 3]))
+        self.trajRH = tsid.TrajectorySE3Constant("traj-right-hand", H_rh_ref)
+        formulation.addMotionTask(self.rightHandTask, self.conf.w_hand, 1, 0.0)
+
+        # right hand reference
+        T_rh_w = self.robot.framePosition(data, self.RH)
+        self.rh_ref = create_sample(T_rh_w)
+        self.rightHandTask.setReference(self.rh_ref)
+
+        '''
+        SE3 task for left hand pose
+        '''
+        # TODO: ADD a tsid.TaskSE3Equality for the right hand
+        self.LH = robot.model().getFrameId(conf.lh_frame_name)
+        H_lh_ref = robot.framePosition(data, self.LH)
+
+        self.leftHandTask = tsid.TaskSE3Equality(
+            "task-left-hand", self.robot, self.conf.lh_frame_name)
+        self.leftHandTask.setKp(
+            self.conf.kp_hand * np.array([1, 1, 1, 1, 1, 3]))
+        self.leftHandTask.setKd(
+            2.0 * np.sqrt(self.conf.kp_hand) * np.array([1, 1, 1, 1, 1, 3]))
+        self.trajLH = tsid.TrajectorySE3Constant("traj-left-hand", H_lh_ref)
+        formulation.addMotionTask(self.leftHandTask, self.conf.w_hand, 1, 0.0)
+
+        # left hand reference
+        T_lh_w = self.robot.framePosition(data, self.LH)
+        self.lh_ref = create_sample(T_lh_w)
+        self.leftHandTask.setReference(self.lh_ref)
 
         '''
         Keep the torso orientation upright                          
@@ -497,12 +524,13 @@ class TSIDWrapper:
         self.leftFootTask.setReference(self.lf_ref)
 
     def set_RH_pose_ref(self, pose, vel=None, acc=None):
-        # TODO: set the right hand reference
-        pass
+        update_sample(self.rh_ref,pose,vel,acc)
+        self.rightHandTask.setReference(self.rh_ref)
+
 
     def set_LH_pose_ref(self, pose, vel=None, acc=None):
-        # TODO: set the left hand reference
-        pass
+        update_sample(self.lh_ref,pose,vel,acc)
+        self.leftHandTask.setReference(self.lh_ref)
 
     ############################################################################
     # get endeffector states
@@ -539,12 +567,22 @@ class TSIDWrapper:
         return H, v
 
     def get_pose_vel_acc_LH(self, dv=None):
-        # TODO: extract left hand the current Pose, velocity, acceleration form the solution
-        pass
+        data = self.formulation.data()
+        H = self.robot.framePosition(data, self.LH)
+        v = self.robot.frameVelocity(data, self.LH)
+        if dv is not None:
+            a = self.rightHandTask.getAcceleration(dv)
+            return H, v, a
+        return H, v
 
     def get_pose_vel_acc_RH(self, dv=None):
-        # TODO: extract right hand the current Pose, velocity, acceleration form the solution
-        pass
+        data = self.formulation.data()
+        H = self.robot.framePosition(data, self.RH)
+        v = self.robot.frameVelocity(data, self.RH)
+        if dv is not None:
+            a = self.rightHandTask.getAcceleration(dv)
+            return H, v, a
+        return H, v
 
 
     ############################################################################
@@ -614,21 +652,27 @@ class TSIDWrapper:
             self.motion_LH_active = False
 
     def remove_motion_RH(self, transition_time=0.0):
-        # TODO: remove right hand motion task from stack
-        pass
+        if self.motion_RH_active:
+            self.formulation.removeTask("task-right-hand", transition_time)
+            self.motion_RH_active = False        
 
     def add_motion_LH(self, transition_time=0.0):
         if not self.motion_LH_active:
             H_lh_ref = self.robot.framePosition(self.formulation.data(), self.LH)
             update_sample(self.lh_ref, H_lh_ref)
-            self.leftHandTask.setReference(self.lh_ref)
+            self.leftHandTask.setReference(self.ç)
             self.formulation.addMotionTask(
                 self.leftHandTask, self.conf.w_hand, 1, transition_time)
             self.motion_LH_active = True
 
     def add_motion_RH(self, transition_time=0.0):
-        # TODO: add right hand motion task from stack
-        pass
+        if not self.motion_RH_active:
+            H_rh_ref = self.robot.framePosition(self.formulation.data(), self.LH)
+            update_sample(self.rh_ref, H_rh_ref)
+            self.rightHandTask.setReference(self.rh_ref)
+            self.formulation.addMotionTask(
+                self.rightHandTask, self.conf.w_hand, 1, transition_time)
+            self.motion_RH_active = True
 
     ############################################################################
     # get forces
@@ -647,9 +691,13 @@ class TSIDWrapper:
             return np.zeros(6)
 
     def get_wrench_RH(self, sol):
-        # TODO: get right hand wrench if contact exists
-        pass
+        if self.formulation.checkContact(self.contactRH.name, sol):
+            return self.formulation.getContactForce(self.contactRH.name, sol)
+        else:
+            return np.zeros(6)
 
     def get_wrench_LH(self, sol):
-        # TODO: get left hand wrench if contact exists
-        pass
+        if self.formulation.checkContact(self.contactLH.name, sol):
+            return self.formulation.getContactForce(self.contactLH.name, sol)
+        else:
+            return np.zeros(6)

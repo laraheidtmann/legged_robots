@@ -55,8 +55,8 @@ class Talos(Robot):
         pass
 
     def update(self):
-        # TODO update base class
-        pass
+        super().update()
+        
     
     def publish(self,T_frame_w):
         msg = JointState()
@@ -127,8 +127,7 @@ def main():
         v=ROBOT.v()
         
         tau_sol,dv_sol= tsid_wrapper.update(q,v,t)
-
-
+  
 
         # TODO: command to the robot
         ROBOT.setActuatedJointTorques(tau_sol)
