@@ -224,6 +224,11 @@ def estimate_cp(x_CoM, x_CoM_dot, omega):
 def main(): 
     rclpy.init()
     node = rclpy.create_node('tutorial_4_standing_node')
+    node.declare_parameter("force_magnitude",0.0)
+    force_magnitude=node.get_parameter("force_magnitude").value
+    node.declare_parameter("control_strategy","ankle_strategy")
+    control_strategy=node.get_parameter("control_strategy").value
+
     tsid_wrapper=TSIDWrapper(conf)
     simulator=PybulletWrapper(sim_rate=1000)
     # Setup pybullet camera
@@ -244,10 +249,12 @@ def main():
     
     t_publish = 0.0
     push_state = "default"
-    force_magnitude=15
+    #force_magnitude=50
 
     pb.enableJointForceTorqueSensor(robot.id(), robot.jointNameIndexMap()["leg_right_6_joint"], True)
     pb.enableJointForceTorqueSensor(robot.id(), robot.jointNameIndexMap()["leg_left_6_joint"], True)
+
+    state_set=False
 
     while rclpy.ok():
 
@@ -260,6 +267,13 @@ def main():
         rclpy.spin_once(node,timeout_sec=0)
         q=robot.q()
         v=robot.v()
+        if t>2 and state_set==False: #wait a few seconds s.t. the robot has time to get into home position
+            x_com_ref= tsid_wrapper.comState().pos()
+            x_d=x_com_ref
+            state_set=True
+
+
+
 
 
         wren = pb.getJointState(robot.id(), robot.jointNameIndexMap()["leg_right_6_joint"])[2]
@@ -280,7 +294,7 @@ def main():
         H_w_rankle = data.oMf[robot._model.getFrameId("leg_right_6_joint")]
 
         ZMP_left=estimate_zmp(wl_lankle.linear,wl_lankle.angular,0.1)
-        ZMP_left_world=H_w_lankle.rotation @ np.array([ZMP_left[0],ZMP_left[1],ZMP_left[2]-0.1])
+        ZMP_left_world=H_w_lankle.act(np.array([ZMP_left[0],ZMP_left[1],ZMP_left[2]-0.1]))
         ZMP_right=estimate_zmp(wr_rankle.linear,wr_rankle.angular,0.1)
         ZMP_right_world=H_w_rankle.act(np.array([ZMP_right[0],ZMP_right[1],ZMP_right[2]-0.1]))
 
@@ -301,11 +315,46 @@ def main():
         CP=estimate_cp(x_CoM,x_CoM_dot,3)
         robot.publish_ground_reference_points(ZMP,CMP,CP,x_CoM)
 
+        if t>2 and control_strategy=="ankle_strategy": #wait a few seconds to activate it
+            # --- Ankle strategy ---
+            Kx = 5.0   # tune: Kx > omega
+            Kp = 2.0   # tune: 0 < Kp < omega < Kx
+            xdot_ref = np.array([0.0, 0.0, 0.0])  # standing: reference velocity is zero
+            x_ref = x_com_ref  # constant standing reference position
 
+            p = np.array(ZMP)  # current ZMP (world frame, z=0)
+            p_ref = 0.5 * (H_w_lsole.translation[:2] + H_w_rsole.translation[:2])
+            p_ref = np.array([p_ref[0], p_ref[1], 0.0])
 
+            xdot_d = xdot_ref - Kx*(x_d - x_ref) + Kp*(p - p_ref)
 
-        t_period=3
-        t_push=1
+            # integrate to get desired position
+            dt = simulator.stepTime()
+            x_d = x_d + xdot_d * dt
+
+            # feed to TSID CoM task
+            tsid_wrapper.setComRefState(x_d, xdot_d)
+        elif t>2 and control_strategy=="hip_strategy":
+            # --- Hip strategy ---
+            K_gamma = 1.0  # tune
+
+            p_ref = 0.5 * (H_w_lsole.translation[:2] + H_w_rsole.translation[:2])
+            p_ref = np.array([p_ref[0], p_ref[1], 0.0])
+
+            r = np.array(CMP)        # current CMP (x, y, 0)
+            r_ref = p_ref.copy()      # reference CMP — center of support polygon, same as ZMP ref
+
+            Gamma_d = K_gamma * (r - r_ref)
+
+            # Angular momentum is a 3D vector (Lx, Ly, Lz) — CMP only gives x,y info,
+            # and the mapping CMP-error -> desired L needs the right sign/axis convention.
+            # Typically: a CMP shift in +x corresponds to a desired angular momentum about the y-axis (and vice versa)
+            L_ref = np.array([Gamma_d[1], -Gamma_d[0], 0.0])  # see note on convention below
+
+            tsid_wrapper.setAngularMomentumRef(L_ref)
+
+        t_period=4
+        t_push=0.5
         if push_state != "finished":
             push_state,force=robot.pushing_force_state_machine(t,t_period,t_push,force_magnitude)
    
