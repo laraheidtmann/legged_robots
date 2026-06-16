@@ -25,8 +25,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'home_posture=tutorial_5.t51:main',
-
+            't51=tutorial_5.t51:main',
+            't52=tutorial_5.t52:main',
         ],
     },
 )

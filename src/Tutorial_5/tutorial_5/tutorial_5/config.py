@@ -72,7 +72,7 @@ base_frame_name = "base_link"               # base link
 
 # Task weights
 w_com = 1e1             # weight of center of mass task
-w_am = 1e-4             # weight of angular momentum task
+w_am = 1e-4            # weight of angular momentum task
 w_foot = 1e-1           # weight of the foot motion task: here no motion
 w_hand = 1e-1           # weight of the hand motion task
 w_torso = 1             # weight torso orientation motion task

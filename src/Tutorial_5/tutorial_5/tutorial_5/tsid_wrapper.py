@@ -221,8 +221,8 @@ class TSIDWrapper:
         formulation.addMotionTask(amTask, conf.w_am, 1, 0.)
 
         # am reference is zero
-        amRef = create_sample(np.zeros(3))
-        amTask.setReference(amRef)
+        self.amRef = create_sample(np.zeros(3))
+        amTask.setReference(self.amRef)
 
         ########################################################################
         # Posture task
@@ -701,3 +701,8 @@ class TSIDWrapper:
             return self.formulation.getContactForce(self.contactLH.name, sol)
         else:
             return np.zeros(6)
+
+
+    def setAngularMomentumRef(self, L, Ldot=None, Lddot=None):
+        update_sample(self.amRef, L, Ldot, Lddot)
+        self.amTask.setReference(self.amRef)

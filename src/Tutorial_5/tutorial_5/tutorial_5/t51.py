@@ -141,9 +141,12 @@ class Talos(Robot):
 
 
         directions={
-            "right": np.array([0.0 , 1.0, 0.0]),
-            "left": np.array([0.0 , -1.0, 0.0]),
+            #"right": np.array([0.0 , 1.0, 0.0]),
+            #"left": np.array([0.0 , -1.0, 0.0]),
             "back": np.array([1.0 , 0.0, 0.0]),
+            "right": np.array([1.0 , 0.0, 0.0]),
+            "left": np.array([1.0 , 0.0, 0.0]),
+
             
         }
         force=np.zeros(3)
@@ -315,7 +318,7 @@ def main():
         CP=estimate_cp(x_CoM,x_CoM_dot,3)
         robot.publish_ground_reference_points(ZMP,CMP,CP,x_CoM)
 
-        if t>2 and control_strategy=="ankle_strategy": #wait a few seconds to activate it
+        if t>2 and (control_strategy=="ankle_strategy" or control_strategy=="both_strategies"): #wait a few seconds to activate it
             # --- Ankle strategy ---
             Kx = 5.0   # tune: Kx > omega
             Kp = 2.0   # tune: 0 < Kp < omega < Kx
@@ -334,9 +337,9 @@ def main():
 
             # feed to TSID CoM task
             tsid_wrapper.setComRefState(x_d, xdot_d)
-        elif t>2 and control_strategy=="hip_strategy":
+        if t>2 and (control_strategy=="hip_strategy" or control_strategy=="both_strategies"):
             # --- Hip strategy ---
-            K_gamma = 1.0  # tune
+            K_gamma = 2.0  # tune
 
             p_ref = 0.5 * (H_w_lsole.translation[:2] + H_w_rsole.translation[:2])
             p_ref = np.array([p_ref[0], p_ref[1], 0.0])
