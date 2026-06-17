@@ -3,10 +3,6 @@
 ## Tutorial 4: Whole Body Control
 
 
-
-
-
-
 ### How to Run
 
 

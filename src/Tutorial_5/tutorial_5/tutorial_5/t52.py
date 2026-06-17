@@ -362,7 +362,7 @@ def main():
             push_state,force=robot.pushing_force_state_machine(t,t_period,t_push,force_magnitude)
    
         tau_sol,dv_sol= tsid_wrapper.update(q_tsid,v_tsid,t)
-        n_update=1
+        n_update=4
   
 
         # TODO: command to the robot
