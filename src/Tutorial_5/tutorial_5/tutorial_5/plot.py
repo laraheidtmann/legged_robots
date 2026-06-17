@@ -31,7 +31,7 @@ def read_pose_topic(bag_path, topic_name):
 #bag_path = "/home/ubuntu/legged_robots/rosbag2_2026_06_12-14_47_00"  # the folder, not the .db3 file
 #bag_path= "rosbag2_2026_06_12-14_47_00"
 #bag_path="rosbag2_2026_06_12-15_03_36"
-bag_path="rosbags/both"
+bag_path="rosbags/both_strategies"
 t_zmp, x_zmp, y_zmp = read_pose_topic(bag_path, "/zmp")
 t_cmp, x_cmp, y_cmp = read_pose_topic(bag_path, "/cmp")
 t_cp,  x_cp,  y_cp  = read_pose_topic(bag_path, "/cp")

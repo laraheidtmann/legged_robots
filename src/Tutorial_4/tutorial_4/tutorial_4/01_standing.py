@@ -103,7 +103,13 @@ def main():
     rclpy.init()
     node = rclpy.create_node('tutorial_4_standing_node')
     tsid_wrapper=TSIDWrapper(conf)
-    simulator=PybulletWrapper(sim_rate=1000)
+    simulator=PybulletWrapper(sim_rate=1000)   
+    pb.resetDebugVisualizerCamera(
+        cameraDistance=1.2,
+        cameraYaw=90,
+        cameraPitch=-20,
+        cameraTargetPosition=[0.0, 0.0, 0.8])
+
     q_home=conf.q_home
     model=tsid_wrapper.model
     urdf= conf.urdf

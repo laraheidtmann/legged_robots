@@ -2,10 +2,10 @@ rosbag2_bagfile_information:
   version: 9
   storage_identifier: mcap
   duration:
-    nanoseconds: 58956057333
+    nanoseconds: 59463502250
   starting_time:
-    nanoseconds_since_epoch: 1781517060798654630
-  message_count: 72525
+    nanoseconds_since_epoch: 1781727626862647627
+  message_count: 73256
   topics_with_message_count:
     - topic_metadata:
         name: /zmp
@@ -28,7 +28,7 @@ rosbag2_bagfile_information:
               nsec: 854775807
             avoid_ros_namespace_conventions: false
         type_description_hash: RIHS01_4c0296af86e01e562e9e0405d138a01537247580076c58ea38d7923ac1045897
-      message_count: 18131
+      message_count: 18314
     - topic_metadata:
         name: /cp
         type: geometry_msgs/msg/PointStamped
@@ -50,7 +50,7 @@ rosbag2_bagfile_information:
               nsec: 854775807
             avoid_ros_namespace_conventions: false
         type_description_hash: RIHS01_4c0296af86e01e562e9e0405d138a01537247580076c58ea38d7923ac1045897
-      message_count: 18131
+      message_count: 18314
     - topic_metadata:
         name: /com
         type: geometry_msgs/msg/PointStamped
@@ -72,7 +72,7 @@ rosbag2_bagfile_information:
               nsec: 854775807
             avoid_ros_namespace_conventions: false
         type_description_hash: RIHS01_4c0296af86e01e562e9e0405d138a01537247580076c58ea38d7923ac1045897
-      message_count: 18131
+      message_count: 18314
     - topic_metadata:
         name: /cmp
         type: geometry_msgs/msg/PointStamped
@@ -94,17 +94,17 @@ rosbag2_bagfile_information:
               nsec: 854775807
             avoid_ros_namespace_conventions: false
         type_description_hash: RIHS01_4c0296af86e01e562e9e0405d138a01537247580076c58ea38d7923ac1045897
-      message_count: 18132
+      message_count: 18314
   compression_format: ""
   compression_mode: ""
   relative_file_paths:
-    - no_controller_0.mcap
+    - hip_strategy_0.mcap
   files:
-    - path: no_controller_0.mcap
+    - path: hip_strategy_0.mcap
       starting_time:
-        nanoseconds_since_epoch: 1781517060798654630
+        nanoseconds_since_epoch: 1781727626862647627
       duration:
-        nanoseconds: 58956057333
-      message_count: 72525
+        nanoseconds: 59463502250
+      message_count: 73256
   custom_data: ~
   ros_distro: rolling

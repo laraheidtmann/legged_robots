@@ -101,19 +101,19 @@ source install/setup.bash
 
 | `t51` | Exercise 1-3: Robot is being pushed with variant force. Either hip strategy, ankle strategy, both or none can be applied to keep the robots balance and not fall over. Parmeters can be passed to declare which strategy is used: control_strategy={ankle_strategy, hip_strategy, both_strategy, no_strategy} and force_magnitude to adjust the force the robot is pushed with.|
 
+| `t52` | Exercise 4: Position-controlled hardware interface |
 
 | `plot.py` | Plots of all the ground reference points and the CoM are done in plot.py from recorded ros bags |
-
-| `t52` | Exercise 4: Position-controlled hardware interface |
 
 
 
 ```bash
 ros2 run tutorial_5 t51 --ros-args -p force_magnitude:=30.0 -p control_strategy:='both_strategies'
+
 #or
 
-ros2 run bullet_sims t52 --ros-args -p force_magnitude:=30.0 -p control_strategy:='both_strategies'
-
+ ros2 run tutorial_5 t52 --ros-args -p force_magnitude:=80.0 -p control_strate
+ gy:='both_strategies'
 
 ```
 

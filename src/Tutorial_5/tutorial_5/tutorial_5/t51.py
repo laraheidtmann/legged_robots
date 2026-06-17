@@ -141,11 +141,9 @@ class Talos(Robot):
 
 
         directions={
-            #"right": np.array([0.0 , 1.0, 0.0]),
-            #"left": np.array([0.0 , -1.0, 0.0]),
+            "right": np.array([0.0 , 1.0, 0.0]),
+            "left": np.array([0.0 , -1.0, 0.0]),
             "back": np.array([1.0 , 0.0, 0.0]),
-            "right": np.array([1.0 , 0.0, 0.0]),
-            "left": np.array([1.0 , 0.0, 0.0]),
 
             
         }
@@ -168,12 +166,12 @@ class Talos(Robot):
             self.State=next_state[self.State]
             self.push_state_start_time=t  # reset timer for new State
             force=np.zeros(3)
-        self.applyForce(f_w=[force[0],force[1],force[2]])
+        #self.applyForce(f_w=[force[0],force[1],force[2]])
+        self.applyForce(force)
 
 
         
  
-        self.applyForce(force)
         
         return self.State,force
 
@@ -272,10 +270,8 @@ def main():
         v=robot.v()
         if t>2 and state_set==False: #wait a few seconds s.t. the robot has time to get into home position
             x_com_ref= tsid_wrapper.comState().pos()
-            x_d=x_com_ref
+            x_d=x_com_ref.copy()
             state_set=True
-
-
 
 
 
@@ -320,8 +316,8 @@ def main():
 
         if t>2 and (control_strategy=="ankle_strategy" or control_strategy=="both_strategies"): #wait a few seconds to activate it
             # --- Ankle strategy ---
-            Kx = 5.0   # tune: Kx > omega
-            Kp = 2.0   # tune: 0 < Kp < omega < Kx
+            Kx = 9.0   # tune: Kx > omega
+            Kp = 1.5 # tune: 0 < Kp < omega < Kx
             xdot_ref = np.array([0.0, 0.0, 0.0])  # standing: reference velocity is zero
             x_ref = x_com_ref  # constant standing reference position
 
@@ -339,7 +335,7 @@ def main():
             tsid_wrapper.setComRefState(x_d, xdot_d)
         if t>2 and (control_strategy=="hip_strategy" or control_strategy=="both_strategies"):
             # --- Hip strategy ---
-            K_gamma = 2.0  # tune
+            K_gamma = 5.0  # tune
 
             p_ref = 0.5 * (H_w_lsole.translation[:2] + H_w_rsole.translation[:2])
             p_ref = np.array([p_ref[0], p_ref[1], 0.0])
@@ -352,8 +348,7 @@ def main():
             # Angular momentum is a 3D vector (Lx, Ly, Lz) — CMP only gives x,y info,
             # and the mapping CMP-error -> desired L needs the right sign/axis convention.
             # Typically: a CMP shift in +x corresponds to a desired angular momentum about the y-axis (and vice versa)
-            L_ref = np.array([Gamma_d[1], -Gamma_d[0], 0.0])  # see note on convention below
-
+            L_ref = np.array([Gamma_d[1], -Gamma_d[0], 0.0])
             tsid_wrapper.setAngularMomentumRef(L_ref)
 
         t_period=4

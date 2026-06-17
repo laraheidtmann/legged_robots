@@ -167,7 +167,6 @@ class Talos(Robot):
             self.State=next_state[self.State]
             self.push_state_start_time=t  # reset timer for new State
             force=np.zeros(3)
-        self.applyForce(f_w=[force[0],force[1],force[2]])
 
 
         
@@ -363,7 +362,7 @@ def main():
             push_state,force=robot.pushing_force_state_machine(t,t_period,t_push,force_magnitude)
    
         tau_sol,dv_sol= tsid_wrapper.update(q_tsid,v_tsid,t)
-        n_update=5
+        n_update=1
   
 
         # TODO: command to the robot

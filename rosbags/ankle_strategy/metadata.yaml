@@ -2,10 +2,10 @@ rosbag2_bagfile_information:
   version: 9
   storage_identifier: mcap
   duration:
-    nanoseconds: 22800233080
+    nanoseconds: 59514550000
   starting_time:
-    nanoseconds_since_epoch: 1781276950555322888
-  message_count: 28300
+    nanoseconds_since_epoch: 1781727495752356261
+  message_count: 73784
   topics_with_message_count:
     - topic_metadata:
         name: /zmp
@@ -28,7 +28,7 @@ rosbag2_bagfile_information:
               nsec: 854775807
             avoid_ros_namespace_conventions: false
         type_description_hash: RIHS01_4c0296af86e01e562e9e0405d138a01537247580076c58ea38d7923ac1045897
-      message_count: 7075
+      message_count: 18446
     - topic_metadata:
         name: /cp
         type: geometry_msgs/msg/PointStamped
@@ -50,7 +50,7 @@ rosbag2_bagfile_information:
               nsec: 854775807
             avoid_ros_namespace_conventions: false
         type_description_hash: RIHS01_4c0296af86e01e562e9e0405d138a01537247580076c58ea38d7923ac1045897
-      message_count: 7075
+      message_count: 18446
     - topic_metadata:
         name: /com
         type: geometry_msgs/msg/PointStamped
@@ -72,7 +72,7 @@ rosbag2_bagfile_information:
               nsec: 854775807
             avoid_ros_namespace_conventions: false
         type_description_hash: RIHS01_4c0296af86e01e562e9e0405d138a01537247580076c58ea38d7923ac1045897
-      message_count: 7075
+      message_count: 18446
     - topic_metadata:
         name: /cmp
         type: geometry_msgs/msg/PointStamped
@@ -94,17 +94,17 @@ rosbag2_bagfile_information:
               nsec: 854775807
             avoid_ros_namespace_conventions: false
         type_description_hash: RIHS01_4c0296af86e01e562e9e0405d138a01537247580076c58ea38d7923ac1045897
-      message_count: 7075
+      message_count: 18446
   compression_format: ""
   compression_mode: ""
   relative_file_paths:
-    - rosbag2_2026_06_12-15_09_10_0.mcap
+    - ankle_strategy_0.mcap
   files:
-    - path: rosbag2_2026_06_12-15_09_10_0.mcap
+    - path: ankle_strategy_0.mcap
       starting_time:
-        nanoseconds_since_epoch: 1781276950555322888
+        nanoseconds_since_epoch: 1781727495752356261
       duration:
-        nanoseconds: 22800233080
-      message_count: 28300
+        nanoseconds: 59514550000
+      message_count: 73784
   custom_data: ~
   ros_distro: rolling
