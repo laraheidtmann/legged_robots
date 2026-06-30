@@ -82,11 +82,9 @@ def main():
 
     interpolator = LIPInterpolator(x0, conf)
 
-    # initial CoM reference: current centered CoM → ramp to support foot over pre_dur
+    # set initial CoM task reference to support foot position
     c, c_dot, c_ddot = interpolator.comState()
-    c_start = robot.stack.comState().value()[:3].copy()  # actual CoM (centered)
-    c_goal  = c.copy()                                    # target: over support foot
-    robot.stack.setComRefState(c_start, np.zeros(3), np.zeros(3))
+    robot.stack.setComRefState(c, c_dot, c_ddot)
 
     # initial foot trajectory: left foot steps to plan[1] (its initial position)
     foot_traj = SwingFootTrajectory(
@@ -142,11 +140,8 @@ def main():
         ########################################################################
 
         if i < 0:
-            # Pre-walk: smooth cosine ramp from centered CoM to support foot
-            s = (i + N_pre) / N_pre          # 0 → 1 over pre_dur
-            s = 0.5 * (1.0 - np.cos(np.pi * s))  # ease in/out
-            c_ref = (1.0 - s) * c_start + s * c_goal
-            robot.stack.setComRefState(c_ref, np.zeros(3), np.zeros(3))
+            # Pre-walk: both feet in contact, shift CoM to right support foot
+            robot.stack.setComRefState(c, np.zeros(3), np.zeros(3))
 
         if i == 0:
             # CoM is now over right foot — switch to single support

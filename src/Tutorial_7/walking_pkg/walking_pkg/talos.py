@@ -143,9 +143,9 @@ class Talos:
             V_swing_w (np.array 3): linear velocity
             A_swing_w (np.array 3): linear acceleration
         """
-        # pad 3D linear to 6D spatial (angular part = 0)
-        vel_6 = np.zeros(6); vel_6[3:] = V_swing_w
-        acc_6 = np.zeros(6); acc_6[3:] = A_swing_w
+        # pad 3D linear to 6D spatial (TSID/pinocchio order: [linear, angular])
+        vel_6 = np.zeros(6); vel_6[:3] = V_swing_w
+        acc_6 = np.zeros(6); acc_6[:3] = A_swing_w
 
         if self.swing_foot == Side.RIGHT:
             self.stack.set_RF_pose_ref(T_swing_w, vel_6, acc_6)

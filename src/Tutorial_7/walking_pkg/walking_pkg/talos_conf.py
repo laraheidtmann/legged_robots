@@ -112,11 +112,11 @@ h = 0.85                        # walking height
 
 # mpc settings
 dt_mpc = 0.1                                            # sampling time interval for the mpc
-step_dur = 1.8                                          # time per step
+step_dur = 2.0                                        # time per step
 no_mpc_samples_per_step = int(round(step_dur/dt_mpc))   # number of mpc updates
 
 # mpc horizon settings
-no_steps_per_horizon = 2
+no_steps_per_horizon = 1.8
 horizion_dur = no_steps_per_horizon*step_dur
 no_mpc_samples_per_horizon = int(round(horizion_dur/dt_mpc))
 
