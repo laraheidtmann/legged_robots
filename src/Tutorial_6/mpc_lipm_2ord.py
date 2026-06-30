@@ -79,7 +79,7 @@ def generate_foot_steps(foot_step_0, step_size_x, no_steps):
     foot_steps = np.zeros((no_steps, 2))
     foot_steps[0] = foot_step_0
     for i in range(1, no_steps):
-        x = foot_step_0[0] + (i // 2) * step_size_x
+        x = foot_step_0[0] + (i) * step_size_x
         y = foot_step_0[1] * ((-1) ** i)
         foot_steps[i] = (x, y)
     return foot_steps
@@ -333,8 +333,8 @@ for i in range(NO_SIM_SAMPLES):
     x_ddot_ext = np.array([0, 0])
 
     # when you got everything working try adding a small disturbance
-    # if i > int(t_push/T_SIM) and i < int((t_push + 0.05)/T_SIM):
-    #    x_ddot_ext = np.array([0, 1.0])
+    #if i > int(t_push/T_SIM) and i < int((t_push + 0.05)/T_SIM):
+     #   x_ddot_ext = np.array([0, 1.0])
 
     x_k = sim.simulate(u_k, x_ddot_ext)
     
