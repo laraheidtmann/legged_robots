@@ -6,7 +6,7 @@ typing_extensions
 lark
 empy
 pyyaml
-pydrake
+drake
 
 
 

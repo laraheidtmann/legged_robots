@@ -24,7 +24,7 @@ Please ckeck the pdf and TODOs in this file.
 
 import numpy as np
 import matplotlib.pyplot as plt
-plt.style.use('seaborn-dark')
+plt.style.use('seaborn-v0_8-dark')
 
 from pydrake.all import (MathematicalProgram, Solve, SnoptSolver)
 import pydrake.symbolic as sym
@@ -95,9 +95,14 @@ def pendulum_continous_dynamics(x, u):
     
     # use object d to get math functions such as (d.sin, d.log, etc.)
     d = sym if x.dtype == object else np
+    q     = x[0]
+    q_dot = x[1]
+    
+    q_ddot = (-m*g*l * d.sin(q) - b*q_dot + u) / (m*l**2)
+    
+    x_dot = np.array([q_dot, q_ddot])
 
-    #>>>>TODO: add continous state space equation and return x_dot
-    x_dot = None
+    #>>>>: added continous state space equation and return x_dot
     return x_dot
 
 def pendulum_discretized_dynamics(x, u, x_next, dt):
@@ -117,9 +122,11 @@ def pendulum_discretized_dynamics(x, u, x_next, dt):
         _type_: the residual between euler integration and x_next
     """
 
-    #>>>>TODO: compute x_dot integrated it using x and dt. Return the
+    #>>>>done: compute x_dot integrated it using x and dt. Return the
     # residual to x_next
-    residuals=None
+    x_dot = pendulum_continous_dynamics(x, u)
+    x_next_euler = x + x_dot * dt
+    residuals = x_next_euler - x_next
     return residuals
 
 ################################################################################
@@ -162,7 +169,7 @@ for i in range(nx):
 for i in range(nx):
     prog.AddConstraint(state[N-1,i] == x_final[i])
 
-# 3. add any timestep we want our solution to respect the dynamics of the pendulum
+# 3. at any timestep we want our solution to respect the dynamics of the pendulum
 # That means the next state x_k+1 should be the integral of the prev. state x_k
 for k in range(N-1):
     residuals = pendulum_discretized_dynamics(state[k], control[k], state[k+1], h[k])
@@ -172,8 +179,12 @@ for k in range(N-1):
 prog.AddBoundingBoxConstraint([h_min]*N, [h_max]*N, h)
 
 # 4. add a constrain on the control torque
-#>>>>TODO: After, you simulated the unconstraint case. 
-#>>>>TODO: Add some limits on the control torque between some min and max value
+#>>>>done: After, you simulated the unconstraint case. 
+#>>>>done: Add some limits on the control torque between some min and max value
+
+u_max=10
+u_min=4
+prog.AddBoundingBoxConstraint(u_min,u_max,control)
 
 
 ################################################################################
@@ -182,7 +193,7 @@ prog.AddBoundingBoxConstraint([h_min]*N, [h_max]*N, h)
 # in this example there are three costs:
 # 1) minimize the control effort: u*R*u
 # 2) get closer to the goal: (x - x_goal)^T*Q*(x - x_goal)
-# 3) ####TODO: What is the meaning of the term S*sum(h) ?
+# 3) ####Done: What is the meaning of the term S*sum(h) ?
 
 Q = np.array([[500, 0],[0, 500]])
 R = 10

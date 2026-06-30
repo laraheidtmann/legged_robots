@@ -19,7 +19,7 @@ import numpy as np
 from pydrake.all import MathematicalProgram, Solve
 
 import matplotlib.pyplot as plt
-plt.style.use('seaborn-dark')
+plt.style.use('seaborn-v0_8-dark')
 
 ################################################################################
 # settings

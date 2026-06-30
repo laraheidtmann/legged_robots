@@ -1,0 +1,9 @@
+What is the meaning of the variables h?
+-> the timestep size between two steps, but its a decision variable. The solver is free to choose the timestep between an upper and a lower limit, 500Hz and 100Hz. 
+What is the meaning of the term S*sum(h) ?
+It penalizes high times to reach the goal. The solver is urged ti reach the goal as fast as possible.
+
+What happens if we add constraints on the magnitude of u(t)?
+--> if the constraint doesnt allow high engough torques, the stick doesnt reach the top. If it doesnt allow low enogh torques (e.g. >4), it overshoots and cant find the stability.
+• What is the difference of this pendulum problem compared to the CoM trajectory optimization
+(hint look at their dynamics equations)?
