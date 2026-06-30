@@ -42,12 +42,18 @@ class Talos:
         ########################################################################
 
         model=self.stack.model
+                # spawn robot in simulation
         self.robot = Robot(
-                    simulator, conf.urdf, model,
-                    [0, 0, 0.9], [0, 0, 0, 1],
-                    
-                    q=conf.q_actuated_home
-                )
+            self.sim,
+            self.conf.urdf,
+            self.stack.model,
+            basePosition=[0, 0, 1.1],
+            baseQuationerion=[0, 0, 0, 1],
+            useFixedBase=False,
+            verbose=True,
+        )
+
+       
             
     
         
@@ -96,8 +102,9 @@ class Talos:
     # ──────────────────────────────────────────────────────────────────────────
 
     def update(self):
-        t  = self.sim.time()
-        dt = self.sim.dt()
+        t = self.sim.simTime()
+        dt = self.sim.stepTime()
+
 
         self.robot.update()
         self._update_zmp_estimate()
@@ -238,7 +245,7 @@ class Talos:
         q   = self.robot.q()
         v   = self.robot.v()
         tau, _ = self.stack.update(q, v, t)
-        self.robot.sendTorques(tau)
+        self.robot.setActuatedJointTorques(tau)
 
     def _update_zmp_estimate(self):
         """Estimate ZMP from foot FT sensors using weighted average."""

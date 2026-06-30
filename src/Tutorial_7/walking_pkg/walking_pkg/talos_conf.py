@@ -1,7 +1,6 @@
 import os
 import pinocchio as pin
 import numpy as np
-import rospkg
 from ament_index_python.packages import get_package_share_directory
 
 ################################################################################
@@ -9,19 +8,10 @@ from ament_index_python.packages import get_package_share_directory
 # Note: no_hands = 30 dof (7 per arm)
 ################################################################################
 
-#rospack = rospkg.RosPack()
-#talos_description = rospack.get_path('talos_description')
-#urdf = os.path.join(talos_description, "robots/talos_reduced_no_hands.urdf")
-#path = os.path.join(talos_description, "meshes/../..")
-
 talos_description = get_package_share_directory('talos_description')
 urdf = os.path.join(talos_description, "robots/talos_reduced_no_hands.urdf")
 path = os.path.join(talos_description, "meshes/../..")
 
-talos_description="/home/ubuntu/legged_robots/src/Tutorial_2/talos_description"
-#urdf = os.path.join(talos_description, "robots/talos_reduced_no_hands.urdf")
-urdf= "src/Tutorial_2/talos_description/robots/talos_reduced_no_hands.urdf"
- 
 dt = 0.001                                      # controller time step
 f_cntr = 1.0/dt                                 # controller freq
 na = 30                                         # number of actuated
@@ -33,8 +23,8 @@ q_actuated_home[6:12] = np.array([-0.0004612402198835852, -0.0031162522884748967
 q_home = np.hstack([np.array([0, 0, 0.9, 0, 0, 0, 1]), q_actuated_home])
 
 '''
-0, 1, 2, 3, 4, 5, 			    # left leg
-6, 7, 8, 9, 10, 11, 			# right leg
+0, 1, 2, 3, 4, 5, 		# left leg
+6, 7, 8, 9, 10, 11,             # right leg
 12, 13,                         # torso
 14, 15, 16, 17, 18, 19, 20      # left arm
 21, 22, 23, 24, 25, 26, 27      # right arm
@@ -136,4 +126,3 @@ gamma       = 10**(-3)          # VEL smoothing cost
 
 no_sim_per_mpc = int(round(dt_mpc / dt))        # number of sim between mpc update
 no_sim_per_step = int(round(step_dur / dt))     # number of sim between foot steps
-
