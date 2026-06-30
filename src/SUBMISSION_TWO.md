@@ -39,15 +39,15 @@ source install/setup.bash
 
 
 ```bash
-ros2 run ros_visuals standing_01
+ros2 run tutorial_4 standing_01
 
 #or
 
-ros2 run ros_visuals one_leg_stand_02
+ros2 run tutorial_4 one_leg_stand_02
 
 #or 
 
-ros2 run ros_visuals squatting_03
+ros2 run tutorial_4 squatting_03
 
 
 ```
