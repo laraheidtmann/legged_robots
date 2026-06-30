@@ -21,6 +21,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from pydrake.all import MathematicalProgram, Solve
+from scipy.linalg import block_diag
 
 import matplotlib.animation as animation
 
@@ -75,8 +76,12 @@ def generate_foot_steps(foot_step_0, step_size_x, no_steps):
         no_steps (_type_): _description_
     """
 
-    #>>>>TODO: copy from previous Task 2
-    foot_steps = None
+    foot_steps = np.zeros((no_steps, 2))
+    foot_steps[0] = foot_step_0
+    for i in range(1, no_steps):
+        x = foot_step_0[0] + (i // 2) * step_size_x
+        y = foot_step_0[1] * ((-1) ** i)
+        foot_steps[i] = (x, y)
     return foot_steps
 
 def plot_foot_steps(foot_steps, XY_foot_print, ax):
@@ -88,7 +93,16 @@ def plot_foot_steps(foot_steps, XY_foot_print, ax):
     Args:
         foot_steps (_type_): _description_
     """
-    #>>>>TODO: copy from previous Task 2
+    lx = XY_foot_print[0] / 2
+    ly = XY_foot_print[1] / 2
+    for i, (x, y) in enumerate(foot_steps):
+        xs = [x - lx, x + lx, x + lx, x - lx]
+        ys = [y - ly, y - ly, y + ly, y + ly]
+        color = 'blue' if i % 2 == 0 else 'red'
+        ax.fill(xs, ys, alpha=0.5, color=color)
+    ax.set_xlabel('x [m]')
+    ax.set_ylabel('y [m]')
+    ax.set_aspect('equal')
 
 def generate_zmp_reference(foot_steps, no_samples_per_step):
     """generate a function that computes a referecne trajecotry for the zmp.
@@ -98,9 +112,7 @@ def generate_zmp_reference(foot_steps, no_samples_per_step):
         foot_steps (_type_): _description_
         no_samples_per_step (_type_): _description_
     """
-    #>>>>TODO: copy from previous Task 2
-    zmp_ref = None
-    return zmp_ref
+    return np.repeat(foot_steps, no_samples_per_step, axis=0)
 
 ################################################################################
 # Dynamics of the simplified walking model
@@ -117,8 +129,10 @@ def continious_LIP_dynamics():
         np.array: A, B
     """
 
-    #>>>>TODO: copy from previous Task 2
-    A=None; B=None
+    A = np.array([[0,   1  ],
+                  [g/h, 0  ]])
+    B = np.array([[0   ],
+                  [-g/h]])
     return A, B
 
 def discrete_LIP_dynamics(dt):
@@ -126,14 +140,14 @@ def discrete_LIP_dynamics(dt):
 
     Args:
         dt (_type_): discretization steps
-        g (_type_): gravity
-        h (_type_): height
 
     Returns:
         _type_: _description_
     """
-    #>>>>TODO: copy from previous Task 2
-    Ad=None; Bd=None
+    import scipy.linalg
+    A, B = continious_LIP_dynamics()
+    Ad = scipy.linalg.expm(A * dt)
+    Bd = np.linalg.inv(A) @ (Ad - np.eye(2)) @ B
     return Ad, Bd
 
 ################################################################################
@@ -158,11 +172,11 @@ class Simulator:
         of external pushes on the LIP.
         """
 
-        #>>>>TODO: Compute x_dot and use euler integration to approximate
-        # the state at t+dt
-        #>>>>TODO: The disturbance is added in x_dot as self.D@d
-        
-        return self.x    
+        A_full = block_diag(self.A, self.A)
+        B_full = block_diag(self.B, self.B)
+        x_dot = A_full @ self.x + B_full @ u + self.D @ d
+        self.x = self.x + self.dt * x_dot
+        return self.x
 
 ################################################################################
 # MPC
@@ -194,32 +208,50 @@ class MPC:
         """
         
         # variables
-        nx = None #>>>>TODO: State dimension = ?
-        nu = None #>>>>TODO: control dimension = ?
+        nx = 4
+        nu = 2
         prog = MathematicalProgram()
-        
+
+        Ad_full = block_diag(self.Ad, self.Ad)
+        Bd_full = block_diag(self.Bd, self.Bd)
+
         state = prog.NewContinuousVariables(self.no_samples, nx, 'state')
         control = prog.NewContinuousVariables(self.no_samples, nu, 'control')
-        
-        # 1. intial constraint
-        #>>>>TODO: Add inital state constraint, Hint: x_k
-    
-        # 2. at each time step: respect the LIP descretized dynamics
-        #>>>>TODO: Enforce the dynamics at every time step
-        
-        # 3. at each time step: keep the ZMP within the foot sole (use the footprint and planned step position)
-        #>>>>TODO: Add ZMP upper and lower bound to keep the control (ZMP) within each footprints
-        #Hint: first compute upper and lower bound based on zmp_ref then add constraints.
-        #Hint: Add constraints at every time step
-    
-        # 4. if terminal_idx < self.no_samples than we have the terminal state within
-        # the current horizon. In this case create the terminal state (foot step pos + zero vel)
-        # and apply the state constraint to all states >= terminal_idx within the horizon
-        #>>>>TODO: Add the terminal constraint if requires
-        #Hint: If you are unsure, you can start testing without this first!
-    
-        # setup our cost: minimize zmp error (tracking), minimize CoM velocity (smoothing)
-        #>>>>TODO: add the cost at each timestep, hint: prog.AddCost
+
+        # 1. initial constraint
+        for i in range(nx):
+            prog.AddConstraint(state[0, i] == x_k[i])
+
+        # 2. dynamics at every timestep
+        for k in range(self.no_samples - 1):
+            next_state = Ad_full @ state[k] + Bd_full @ control[k]
+            for i in range(nx):
+                prog.AddConstraint(state[k + 1, i] == next_state[i])
+
+        # 3. ZMP within foot sole
+        for k in range(self.no_samples):
+            lb = ZMP_ref_k[k] - footprint / 2
+            ub = ZMP_ref_k[k] + footprint / 2
+            prog.AddConstraint(control[k, 0] >= lb[0])
+            prog.AddConstraint(control[k, 0] <= ub[0])
+            prog.AddConstraint(control[k, 1] >= lb[1])
+            prog.AddConstraint(control[k, 1] <= ub[1])
+
+        # 4. terminal constraint (if end of plan falls within horizon)
+        if terminal_idx < self.no_samples:
+            terminal_state = np.array([
+                ZMP_ref_k[terminal_idx, 0], 0.0,
+                ZMP_ref_k[terminal_idx, 1], 0.0
+            ])
+            for k in range(terminal_idx, self.no_samples):
+                for i in range(nx):
+                    prog.AddConstraint(state[k, i] == terminal_state[i])
+
+        # cost: ZMP tracking + velocity smoothing
+        for k in range(self.no_samples):
+            zmp_err = control[k] - ZMP_ref_k[k]
+            prog.AddCost(alpha * zmp_err @ zmp_err)
+            prog.AddCost(gamma * (state[k, 1]**2 + state[k, 3]**2))
             
         # solve
         result = Solve(prog)
@@ -248,15 +280,15 @@ footprint = np.array([foot_length, foot_width])
 
 # generate the footsteps
 step_size = 0.2
-#>>>>TODO: 1. generate the foot step plan using generate_foot_steps
-foot_steps=None
+foot_step_0 = np.array([x_0[0], y_0[0]])
+foot_steps = generate_foot_steps(foot_step_0, step_size, NO_STEPS)
 
-# reapeat the last two foot steps (so the mpc horizon never exceeds the plan!)
+# repeat the last two foot steps (so the mpc horizon never exceeds the plan!)
 foot_steps = np.vstack([
     foot_steps, foot_steps[-1], foot_steps[-1]])
 
-# zmp reference trajecotry
-#>>>>TODO: 2. generate the complete ZMP reference using generate_zmp_reference
+# zmp reference trajectory
+ZMP_ref = generate_zmp_reference(foot_steps, NO_MPC_SAMPLES_PER_STEP)
 
 # generate mpc
 mpc = MPC(T_MPC, T_HORIZON)
@@ -286,28 +318,25 @@ for i in range(NO_SIM_SAMPLES):
         # time to update the mpc
         
         # current state
-        #>>>>TODO: get current state from the simulator
-        x_k = None
-    
-        #>>>>TODO: extract the current horizon from the complete reference trajecotry ZMP_ref
-        ZMP_ref_k = None
-    
+        x_k = sim.x
+
+        # extract current horizon from full ZMP reference
+        ZMP_ref_k = ZMP_ref[k : k + NO_MPC_SAMPLES_HORIZON]
+
         # check if we have terminal constraint
         idx_terminal_k = NO_MPC_SAMPLES - k
-        #>>>>TODO: Update the mpc, get new command
-        u_k = None
-        
+        u_k = mpc.buildSolveOCP(x_k, ZMP_ref_k, idx_terminal_k)
+
         k += 1
-    
-    # simulate a push for 0.05 sec with 1.0 m/s^2 acceleration 
+
+    # simulate a push for 0.05 sec with 1.0 m/s^2 acceleration
     x_ddot_ext = np.array([0, 0])
-    
-    #>>>>TODO: when you got everything working try adding a small disturbance
+
+    # when you got everything working try adding a small disturbance
     # if i > int(t_push/T_SIM) and i < int((t_push + 0.05)/T_SIM):
     #    x_ddot_ext = np.array([0, 1.0])
-    
-    #>>>>TODO: Update the simulation using the current command
-    x_k = None
+
+    x_k = sim.simulate(u_k, x_ddot_ext)
     
     # save some stuff
     TIME_VEC[i] = t
@@ -318,14 +347,64 @@ for i in range(NO_SIM_SAMPLES):
 ZMP_LB_VEC = ZMP_REF_VEC - footprint[None,:]
 ZMP_UB_VEC = ZMP_REF_VEC + footprint[None,:]
 
-#>>>>TODO: Use the recodings in STATE_VEC and ZMP_VEC to compute the 
-# LIP acceleration
-#>>>>Hint: Use the continious dynamic matrices
-STATE_DOT_VEC = None
+A, B = continious_LIP_dynamics()
+A_full = block_diag(A, A)
+B_full = block_diag(B, B)
+STATE_DOT_VEC = (A_full @ STATE_VEC.T + B_full @ ZMP_VEC.T).T  # (NO_SIM_SAMPLES, 4)
+COM_ACC = STATE_DOT_VEC[:, [1, 3]]  # [cx_ddot, cy_ddot]
 
 ################################################################################
 # plot something
 
-#>>>>TODO: plot everything in x-axis
-#>>>>TODO: plot everything in y-axis
-#>>>>TODO: plot everything in xy-plane
+fig, axes = plt.subplots(5, 1, figsize=(10, 20))
+
+# x-axis
+ax = axes[0]
+ax.plot(TIME_VEC, STATE_VEC[:, 0], label='CoM x')
+ax.plot(TIME_VEC, STATE_VEC[:, 1], label='CoM vx')
+ax.plot(TIME_VEC, COM_ACC[:, 0],   label='CoM ax')
+ax.plot(TIME_VEC, ZMP_VEC[:, 0],   label='ZMP x')
+ax.plot(TIME_VEC, ZMP_REF_VEC[:, 0], '--', label='ZMP ref x')
+ax.set_xlabel('time [s]')
+ax.set_ylabel('x')
+ax.legend()
+ax.grid(True)
+
+# CoM y position, ZMP y, ZMP ref y, bounds
+ax = axes[1]
+ax.plot(TIME_VEC, STATE_VEC[:, 2],    label='CoM y')
+ax.plot(TIME_VEC, ZMP_VEC[:, 1],      label='ZMP y')
+ax.plot(TIME_VEC, ZMP_REF_VEC[:, 1], '--', label='ZMP ref y')
+ax.plot(TIME_VEC, ZMP_LB_VEC[:, 1],  ':',  label='ZMP LB y')
+ax.plot(TIME_VEC, ZMP_UB_VEC[:, 1],  ':',  label='ZMP UB y')
+ax.set_xlabel('time [s]')
+ax.set_ylabel('y pos [m]')
+ax.legend()
+ax.grid(True)
+
+# CoM y velocity
+ax = axes[2]
+ax.plot(TIME_VEC, STATE_VEC[:, 3], label='CoM vy')
+ax.set_xlabel('time [s]')
+ax.set_ylabel('y vel [m/s]')
+ax.legend()
+ax.grid(True)
+
+# CoM y acceleration
+ax = axes[3]
+ax.plot(TIME_VEC, COM_ACC[:, 1], label='CoM ay')
+ax.set_xlabel('time [s]')
+ax.set_ylabel('y acc [m/s²]')
+ax.legend()
+ax.grid(True)
+
+# xy-plane
+ax = axes[4]
+plot_foot_steps(foot_steps, footprint, ax)
+ax.plot(STATE_VEC[:, 0], STATE_VEC[:, 2], color='green', label='CoM')
+ax.plot(ZMP_VEC[:, 0],   ZMP_VEC[:, 1],  color='orange', linestyle='--', label='ZMP')
+ax.legend()
+ax.grid(True)
+
+plt.tight_layout()
+plt.show()
