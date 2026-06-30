@@ -11,11 +11,9 @@ from ament_index_python.packages import get_package_share_directory
 # robot
 ################################################################################
 
-#rospack = rospkg.RosPack()
-#talos_description = rospack.get_path('talos_description')
-talos_description="/home/ubuntu/legged_robots/src/Tutorial_2/talos_description"
-#urdf = os.path.join(talos_description, "robots/talos_reduced_no_hands.urdf")
-urdf= "src/Tutorial_2/talos_description/robots/talos_reduced_no_hands.urdf"
+
+talos_description = get_package_share_directory('talos_description')
+urdf = os.path.join(talos_description, "robots/talos_reduced_no_hands.urdf")
 path = os.path.join(talos_description, "meshes/../..")
 
  

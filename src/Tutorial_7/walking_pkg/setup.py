@@ -26,6 +26,7 @@ setup(
     entry_points={
         'console_scripts': [
             'walking=walking_pkg.walking:main',
+            'walking_flo=walking_pkg.walking_flo:main',
 
         ],
     },

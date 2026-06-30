@@ -51,6 +51,7 @@ def main():
     T_support_w = robot.stack.get_placement_RF()   # right foot = support
     T_swing_w   = robot.stack.get_placement_LF()   # left  foot = swing
 
+
     ############################################################################
     # footstep plan
     ############################################################################
@@ -81,13 +82,15 @@ def main():
 
     interpolator = LIPInterpolator(x0, conf)
 
-    # set initial CoM task reference to support foot position
+    # initial CoM reference: current centered CoM → ramp to support foot over pre_dur
     c, c_dot, c_ddot = interpolator.comState()
-    robot.stack.setComRefState(c, c_dot, c_ddot)
+    c_start = robot.stack.comState().value()[:3].copy()  # actual CoM (centered)
+    c_goal  = c.copy()                                    # target: over support foot
+    robot.stack.setComRefState(c_start, np.zeros(3), np.zeros(3))
 
-    # initial foot trajectory (dummy — will be reset at first step)
+    # initial foot trajectory: left foot steps to plan[1] (its initial position)
     foot_traj = SwingFootTrajectory(
-        T_swing_w, T_swing_w, conf.step_dur, height=0.05)
+        T_swing_w, plan[1].poseInWorld(), conf.step_dur, height=0.05)
 
     ############################################################################
     # logging setup
@@ -139,7 +142,15 @@ def main():
         ########################################################################
 
         if i < 0:
-            robot.stack.setComRefState(c, np.zeros(3), np.zeros(3))
+            # Pre-walk: smooth cosine ramp from centered CoM to support foot
+            s = (i + N_pre) / N_pre          # 0 → 1 over pre_dur
+            s = 0.5 * (1.0 - np.cos(np.pi * s))  # ease in/out
+            c_ref = (1.0 - s) * c_start + s * c_goal
+            robot.stack.setComRefState(c_ref, np.zeros(3), np.zeros(3))
+
+        if i == 0:
+            # CoM is now over right foot — switch to single support
+            robot.setSwingFoot(Side.LEFT)
 
         ########################################################################
         # MPC update every no_sim_per_mpc steps
@@ -157,18 +168,19 @@ def main():
         # footstep transition every no_sim_per_step steps
         ########################################################################
 
-        if i >= 0 and i > 0 and i % conf.no_sim_per_step == 0 and plan_idx < len(plan):
+        if i >= 0 and i > 0 and i % conf.no_sim_per_step == 0 and plan_idx + 1 < len(plan):
             next_step = plan[plan_idx]
 
-            # switch support/swing
-            robot.setSwingFoot(next_step.side)
-            robot.setSupportFoot(other_foot_id(next_step.side))
+            # next_step.side is the foot that just landed → becomes support.
+            # The OTHER foot lifts off → becomes swing.
+            robot.setSupportFoot(next_step.side)
+            robot.setSwingFoot(other_foot_id(next_step.side))
 
-            # plan foot trajectory from current swing pose to next step
+            # swing foot travels from its current pose to the following plan entry
             T_current = robot.swingFootPose()
-            T_target  = next_step.poseInWorld()
+            T_target  = plan[plan_idx + 1].poseInWorld()
             foot_traj = SwingFootTrajectory(
-                T_current, T_target, conf.step_dur, height=0.05)
+                T_current, T_target, conf.step_dur, height=0.10)
 
             t_step_elapsed = 0.0
             plan_idx      += 1
