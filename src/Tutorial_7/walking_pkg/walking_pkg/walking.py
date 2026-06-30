@@ -14,13 +14,13 @@ from rclpy.node import Node
 from simulator.pybullet_wrapper import PybulletWrapper
 
 # robot config
-import talos_conf as conf
+from . import talos_conf as conf 
 
 # modules
-from talos          import Talos
-from footstep_planner import FootStepPlanner, Side, other_foot_id
-from foot_trajectory  import SwingFootTrajectory
-from lip_mpc          import LIPMPC, LIPInterpolator, generate_zmp_reference
+from .talos          import Talos
+from .footstep_planner import FootStepPlanner, Side, other_foot_id
+from .foot_trajectory  import SwingFootTrajectory
+from .lip_mpc          import LIPMPC, LIPInterpolator, generate_zmp_reference
 
 
 ################################################################################

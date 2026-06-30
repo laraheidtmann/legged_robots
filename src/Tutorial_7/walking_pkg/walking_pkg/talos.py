@@ -8,12 +8,12 @@ from scipy.spatial.transform import Rotation as R
 from simulator.robot import Robot
 
 # whole-body controller
-from Tutorial_4.tutorial_4.tutorial_4.tsid_wrapper import TSIDWrapper, create_sample, update_sample
+from .tsid_wrapper import TSIDWrapper, create_sample, update_sample
 
 # robot configs
-import talos_conf as conf
+from . import talos_conf as conf
 
-from footstep_planner import Side
+from .footstep_planner import Side
 
 # ROS
 import rclpy
@@ -40,11 +40,17 @@ class Talos:
         ########################################################################
         # pybullet robot
         ########################################################################
+
+        model=self.stack.model
         self.robot = Robot(
-            simulator, conf.urdf, conf.path,
-            [0, 0, 0.9], [0, 0, 0, 1],
-            q=conf.q_actuated_home
-        )
+                    simulator, conf.urdf, model,
+                    [0, 0, 0.9], [0, 0, 0, 1],
+                    
+                    q=conf.q_actuated_home
+                )
+            
+    
+        
 
         ########################################################################
         # state

@@ -2,17 +2,26 @@ import os
 import pinocchio as pin
 import numpy as np
 import rospkg
+from ament_index_python.packages import get_package_share_directory
 
 ################################################################################
 # robot
 # Note: no_hands = 30 dof (7 per arm)
 ################################################################################
 
-rospack = rospkg.RosPack()
-talos_description = rospack.get_path('talos_description')
+#rospack = rospkg.RosPack()
+#talos_description = rospack.get_path('talos_description')
+#urdf = os.path.join(talos_description, "robots/talos_reduced_no_hands.urdf")
+#path = os.path.join(talos_description, "meshes/../..")
+
+talos_description = get_package_share_directory('talos_description')
 urdf = os.path.join(talos_description, "robots/talos_reduced_no_hands.urdf")
 path = os.path.join(talos_description, "meshes/../..")
 
+talos_description="/home/ubuntu/legged_robots/src/Tutorial_2/talos_description"
+#urdf = os.path.join(talos_description, "robots/talos_reduced_no_hands.urdf")
+urdf= "src/Tutorial_2/talos_description/robots/talos_reduced_no_hands.urdf"
+ 
 dt = 0.001                                      # controller time step
 f_cntr = 1.0/dt                                 # controller freq
 na = 30                                         # number of actuated
